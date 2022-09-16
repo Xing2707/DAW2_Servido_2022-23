@@ -1,0 +1,51 @@
+<?php
+    $fila = 10;
+    $colu = $fila;
+    $num = 0;
+
+    function primo($n,$y){
+        if(($n+$y) == 0 || ($n+$y) == 1)
+            return true;
+        else{
+                $esprimo = true;
+                $c =2
+            while($esprimo && $c < (($n+$y)/2)){
+                if (($n+$y) % $c) == 0{
+                    $esprimo=false;
+                }
+                return $esprimo;
+            }
+
+        }
+    }
+?>
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+            <meta charset="utf-8"/>
+            <meta name="author" content="xing"/>
+            <title>Tabla de 0 a 100</title>
+            <style>
+                table,tr,td{
+                    border-collapse: collapse;
+                    border:1px;
+                }
+                table {
+                    text-align:cneter;
+                    margin: 0px autor;
+                }
+            </style>
+    </head>
+    <body>
+        <table>
+           <?php for($i=0; $i < $fila; $i++){ ?>
+            <tr>
+                <td><?=$num?></td>
+                <php for($y=1; $y < $colu; $y++) { ?>
+                    <td><?=$num+$y?></td>
+                <?php } ?>
+            </tr>
+            <?php } ?>
+        </table>
+    </body>
+</html>
