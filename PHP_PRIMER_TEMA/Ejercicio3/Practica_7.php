@@ -19,15 +19,16 @@ $n=rand(15,50);
 <body>
     <h1>Piramide  de asteriscos</h1>
         <p>
-            <?php for($i=1; $i<=$n; $i++) { ?>
-                <?php for($y=1; $y<=$n-$i; $y++) { ?>
-                    <?php print(" ")?>
-                <?php } ?>
-                <?php for($c=1; $c<=($i*2)-1; $c++) { ?>
-                    <?php print("*")?>
-                <?php } ?>
-                <?php print('<br/>')?>
-            <?php } ?>
+            <?php for($i=1; $i<=$n; $i++) { 
+
+                for($y=1; $y<=$n-$i; $y++) { 
+                    print(" ");
+                }
+                for($c=1; $c<=($i*2)-1; $c++) {
+                    print("*");
+                }
+                print('<br/>');
+            } ?>
         </p>
 </body>
 </html>
