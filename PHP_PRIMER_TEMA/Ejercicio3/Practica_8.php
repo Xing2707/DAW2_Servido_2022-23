@@ -37,7 +37,7 @@
                     print("<span class='item'>*</span>");
                 }
                 print("<br/>");
-                //de momento no he visto diferencia entre "" y '' para print me sirve "" con '' para poner las etiquetas.     
+                //de momento no he visto diferencia entre "" y '' para print me sirve "" con '' para poner las etiquetas, pero si quieres poner atributo como clas id necesita ponese de este forma class='nombre de clase'.     
             } ?>
         </p>
 </body>
