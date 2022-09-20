@@ -1,5 +1,5 @@
 <?php
-    $num=rand(10,30);
+    $num=10;
     function rand_color(){
         return sprintf('#%06X',mt_rand(0,0xFFFFFF));
     }
