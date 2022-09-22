@@ -1,0 +1,13 @@
+Crea una pagiana web con un formulario que envia los datos por get. 
+El formulario permitira al ususrio introducir una cadena de texto y tendra 
+un boton enviar.
+El formulario mantendra el valor introducido por el usuario
+cuando envia informacion debajo del formulario aparecera un div con una lista sin orden de ellementos :
+- numero de vocales: -XX-
+- numero de consonantes: -XX-
+- palindromo: -si o no-
+
+bonus css:
+    -pagina tiene colo de fondo
+    -formulario tentra borde y centralizado
+    - responsive (enfoque ancho y altura de pagina)
