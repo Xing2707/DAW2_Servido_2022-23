@@ -1,7 +1,10 @@
 <?php
-$num_voc;
-$num_con;
+$num_voc=0;
+$num_con=0;
 $pal;
+$_GET;
+$des=$_GET['descripcion'];
+
 ?>
 
 
@@ -15,13 +18,23 @@ $pal;
 </head>
 <body>
     <form action="Practica_1.php" methor="get">
-        <fieldset>Formulario
-            asundo: <input type="text" name="asundo" id=""> <br/>
-            descripcion: <input type="text" name="descripcion" id=""> <br/>
+        <fieldset>Formulario: <br/>
+            descripcion: <input type="text" name="descripcion" id="" value="<?=$des?>"> <br/>
             <input type="submit" value="enviar">
 
+            <!--<p><?=$des?></p>-->
+            
         </fieldset>
     </form>
-    <div></div>
+    <div>
+        <?php if($_GET) { ?>
+        <?php numero_vocal()?>
+        <ul>
+            <li>numero de vocales: <?=$num_voc?></li>
+            <li>numero de consonantes:<?=$num_con?></li>
+            <li>palindromo: </li>
+        </ul>
+        <?php }?>
+    </div>
 </body>
 </html>

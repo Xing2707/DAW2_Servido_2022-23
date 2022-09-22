@@ -11,3 +11,14 @@ bonus css:
     -pagina tiene colo de fondo
     -formulario tentra borde y centralizado
     - responsive (enfoque ancho y altura de pagina)
+
+
+function numero_vocal(){
+    for($i=0; $<var_dump($des); $i++){
+        if(var_dump($des) == "A" || "a" || "E" || "e" || "I" || "i" ||"O" || "o" || "U" || "u"){
+            $num_voc++;
+        }else{
+            $num_con++;
+        }
+    }
+}
