@@ -1,11 +1,15 @@
 <?php
     $num=0;
+    $alt=true;
     function rand_color(){
         return sprintf('#%06X',mt_rand(0,0xFFFFFF));
     }
     $_GET;
     if(isset($_GET ['altura'])){
         $num=$_GET ['altura'];
+        if($num=" "){
+            $alt=false;
+        }
     }else{
         $num=0;
     }
@@ -40,6 +44,9 @@
         </form>
     </div>
         <div>
+            <?php if(!$alt) { ?>
+                <h1>Introduce un numero correcto PorFavor!</h1>
+            <?php } ?>
             <p id="contenido">
                 <?php for($i=1; $i<=$num; $i++) { 
                     
