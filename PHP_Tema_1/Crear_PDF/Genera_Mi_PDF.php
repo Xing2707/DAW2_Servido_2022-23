@@ -1,17 +1,26 @@
 <?php
 require('./fpdf184/fpdf.php');
 
-if(isset($GET)){
+if(isset($_GET)){
+    $nombre=$_GET['nombre'];
+    $apellido=$_GET['apellido'];
+    $telefo=$_GET['telefono'];
+    $fecha=$_GET['fecha'];
+    $gmail=$_GET['gmail'];
+    $ausnto=$_GET['asundo'];
+
     $mipdf= new FPDF();
-    $mipdf= AddPage();
+    $mipdf->AddPage();
+    $mipdf->setFont('Arial','',20);
+    $mipdf->cell(70, 10, "Carta de recomendacion");
+    $mipdf->set;
+    $mipdf->setFont('Arial','B',15);
+    //$mipdf->setTextColor();
+    $mipdf->Multicell(0,30,"Estimado ".$nombre);
+    $mipdf->Output();
+
 }
-$nombre=$_GET['nombre'];
-$apellido=$_GET['apellido'];
-$telefo=$_GET['telefono'];
-$fecha=$_GET['fecha'];
-$fondo=$_GET['color_fondo'];
-$gmail=$_GET['gmail'];
-$ausnto=$_GET['asundo'];
+
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +33,7 @@ $ausnto=$_GET['asundo'];
 </head>
 <body>
         <div>
-            <form acction="Genera_Mi_PDF.php" method="get">
+            <form accion="Genera_Mi_PDF.php" methor="get">
                 <fieldset>
                     cabezera <br/>
                     nombre:<input type="text" name="nombre" id=""> <br/>
@@ -34,14 +43,12 @@ $ausnto=$_GET['asundo'];
                 </fieldset>
                 <fieldset>
                     cuervo <br/>
-                    color de fondo: <input type="color" name="color_fondo" id="">
                     gmail: <input type="email" name="gmail" id="">
                     asunto: <input type="text" name="asundo" id="">
                 </fieldset><br/>
                 <input type="submit" value="Genera PDF">
             </form>
 
-            <?php print("")?>
         </div>
     
 </body>
