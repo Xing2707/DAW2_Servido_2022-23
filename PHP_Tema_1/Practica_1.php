@@ -1,7 +1,60 @@
 <?php
-$_GET;
+$vacio=false;
 if(isset($_GET['descripcion'])){
     $des=$_GET['descripcion'];
+    $vacio=false;
+    if($des==""){
+        $vacio=true;
+    }
+}
+
+function calcular_consonante(){
+    $num_con=0;
+    $des=$_GET['descripcion'];
+    for($i=0; $i< mb_strlen($des); $i++){
+        $car=$des[$i];
+        if((ord($car)< 65 && ord($car)>90) || (ord($car)<97 && ord($car)>122) || is_int($car))  {
+
+        }else{
+                if(ord($car)!= 65 && ord($car)!= 97 && ord($car)!= 69 && ord($car)!= 101 && ord($car)!= 73 && ord($car)!= 105 && ord($car)!= 79 && ord($car)!= 111 && ord($car)!= 85 && ord($car)!= 117){
+                    $num_con+=1;
+                }
+            }
+    }
+    return $num_con;
+}
+
+function calcular_vocal(){
+    $num_voc=0;
+    $des=$_GET['descripcion'];
+    for($i=0; $i< mb_strlen($des); $i++){
+        $car=$des[$i];
+        if((ord($car)< 65 && ord($car)>90) || (ord($car)<97 && ord($car)>122))  {
+
+        }else{
+            if(ord($car)== 65 || ord($car)== 97 || ord($car)== 69 || ord($car)== 101 || ord($car)== 73 || ord($car)== 105 || ord($car)== 79 || ord($car)== 111 || ord($car)== 85 || ord($car)== 117){
+                $num_voc+=1;
+            }
+        }
+    }
+    return $num_voc;
+}
+
+
+function palitromo(){
+    $pal;
+    $fin=strlen($des)-1;
+    $des=$_GET['descripcion']; 
+                    
+    for($i=0; $i<(mb_strlen($des)/2); $i++){
+        if($des[$i] == $des[$fin]){
+            $pal=true;
+            $fin-=1;
+        }else{
+            $pal=false;
+        }
+    }
+    return$pal;
 }
 
 ?>
@@ -52,43 +105,23 @@ if(isset($_GET['descripcion'])){
         </form>
 
         </div>
+        
         <div id="contenido">
-            <?php if($_GET) { ?> 
-                <p>
-                    <?php 
-                        $num_voc=0;
-                        $num_con=0;
-                        for($i=0; $i< strlen($des); $i++){
-                            $car=$des[$i];
-                            if(((ord($car)< 65 && ord($car)>90) || (ord($car)<97 && ord($car)>122)) && is_integer($car))  {
-
-                            }else{
-                                if(ord($car)== 65 || ord($car)== 97 || ord($car)== 69 || ord($car)== 101 || ord($car)== 73 || ord($car)== 105 || ord($car)== 79 || ord($car)== 111 || ord($car)== 85 || ord($car)== 117){
-                                    $num_voc+=1;
-                                }else{
-                                    $num_con+=1;
-                                }
-                            }
-                        }
-
-                        $fin=strlen($des)-1; 
-                    
-                        for($i=0; $i<(strlen($des)/2); $i++){
-                            if($des[$i] == $des[$fin]){
-                                $pal=true;
-                                $fin-=1;
-                            }else{
-                                $pal=false;
-                            }
-                        }
+            <?php if($vacio){?>
+                <h1>Deben Introducir Una Palabra!</h1>
+            <?php }else{ ?>
+                <?php if($_GET){ ?>
+                    <?php
+                        $voc=calcular_vocal();
+                        $con=calcular_consonante();
+                        $opc=palitromo();
                     ?>
-
-                </p>
-            <ul>
-                <li>numero de vocales: <?=$num_voc?></li>
-                <li>numero de consonantes:<?=$num_con?></li>
-                <li>palindromo: <?php if($pal){print("Si");} else{print("No");}?> </li>
-            </ul>
+                    <ul>
+                        <li>numero de vocales: <?=$voc?></li>
+                        <li>numero de consonantes:<?=$con?></li>
+                        <li>palindromo: <?php if($opc){print("Si");} else{print("No");}?> </li>
+                    </ul>
+                <?php } ?>
             <?php }?>
         </div>
     </div>
