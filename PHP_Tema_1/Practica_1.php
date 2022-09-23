@@ -4,41 +4,6 @@ if(isset($_GET['descripcion'])){
     $des=$_GET['descripcion'];
 }
 
-function calcular_caracter(){
-    $num_voc=0;
-    $num_con=0;
-    for($i=0; $i< strlen($des); $i++){
-        $car=$des[$i];
-        print("$car");
-        print("$des[i]");
-        if((ord($car)< 65 && ord($car)>90) || (ord($car)<97 && ord($car)>122)) {
-            
-        }else{
-            if(ord($car)== 65 || ord($car)== 97 || ord($car)== 69 || ord($car)== 101 || ord($car)== 73 || ord($car)== 105 || ord($car)== 79 || ord($car)== 111 || ord($car)== 85 || ord($car)== 117){
-                $num_voc+=1;
-            }else
-                $num_con+=1;
-        }
-    }
-    print("numero vocal $num_voc ");
-    print("numero consonante $num_con ");
-}
-
-function palitromo(){
-    $fin=strlen($des)-1; 
-
-    for($i=0; $i<(strlen($des)/2); $i++){
-        if($des[$i] == $des[$fin]){
-            print($des[$i]);
-            print($des[$fin]);
-            $pal=true;
-            $fin-=1;
-        }else{
-            $pal=false;
-        }
-    }
-}
-
 ?>
 
 
