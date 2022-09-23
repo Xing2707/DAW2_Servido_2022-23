@@ -15,10 +15,36 @@ bonus css:
 
 function numero_vocal(){
     for($i=0; $<var_dump($des); $i++){
-        if(var_dump($des) == "A" || "a" || "E" || "e" || "I" || "i" ||"O" || "o" || "U" || "u"){
-            $num_voc++;
+        for($i=0; $i< strlen($des); $i++){
+        $car=$des[$i];
+        if($car == 'A' || $car == 'a' || $car == 'E' || $car == 'e' || $car == 'I' || $car == 'i' ||$car == 'O' || $car == 'o' || $car == 'U' || $car == 'u'){
+            $num_voc+=1;
         }else{
-            $num_con++;
+            $num_con+=1;
+        }
+    }
+    }
+
+    if(($car<(chr(65) && $car>(chr(90))) || ($car<(chr(97) && $car>(chr(122)))))) {
+            
+        }else{
+            if($car== chr(65) || $car== chr(97) || $car== chr(69) || $car== chr(101) || $car== chr(73) || $car== chr(105) || $car== chr(79) || $car== chr(111) ||$car== chr(85) || $car== chr(117)){
+                $num_voc+=1;
+
+            }else
+                $num_con+=1;
+        }
+}
+
+
+function palitromo(){
+    $fin=strlen($des)-1;
+    for($i=0; $i<strlen($des)/2; $i++){
+        if($des[$i] == $des[$fin]){
+            $pal=true;
+            $fin-=1;
+        }else{
+            $pal=false;
         }
     }
 }
