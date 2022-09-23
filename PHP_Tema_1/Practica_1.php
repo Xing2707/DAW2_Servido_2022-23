@@ -1,21 +1,40 @@
 <?php
-$num_voc=0;
-$num_con=0;
-$pal;
 $_GET;
-$des=$_GET['descripcion'];
+if(isset($_GET['descripcion'])){
+    $des=$_GET['descripcion'];
+}
 
 function calcular_caracter(){
+    $num_voc=0;
+    $num_con=0;
     for($i=0; $i< strlen($des); $i++){
         $car=$des[$i];
-        if(($car<(chr(65) && $car>(chr(90))) || ($car<(chr(97) && $car>(chr(122)))))) {
+        print("$car");
+        print("$des[i]");
+        if((ord($car)< 65 && ord($car)>90) || (ord($car)<97 && ord($car)>122)) {
             
         }else{
-            if($car== chr(65) || $car== chr(97) || $car== chr(69) || $car== chr(101) || $car== chr(73) || $car== chr(105) || $car== chr(79) || $car== chr(111) ||$car== chr(85) || $car== chr(117)){
+            if(ord($car)== 65 || ord($car)== 97 || ord($car)== 69 || ord($car)== 101 || ord($car)== 73 || ord($car)== 105 || ord($car)== 79 || ord($car)== 111 || ord($car)== 85 || ord($car)== 117){
                 $num_voc+=1;
-
             }else
                 $num_con+=1;
+        }
+    }
+    print("numero vocal $num_voc ");
+    print("numero consonante $num_con ");
+}
+
+function palitromo(){
+    $fin=strlen($des)-1; 
+
+    for($i=0; $i<(strlen($des)/2); $i++){
+        if($des[$i] == $des[$fin]){
+            print($des[$i]);
+            print($des[$fin]);
+            $pal=true;
+            $fin-=1;
+        }else{
+            $pal=false;
         }
     }
 }
@@ -61,38 +80,49 @@ function calcular_caracter(){
         <div id="formulario">
         <form action="Practica_1.php" methor="get">
             <fieldset>Formulario: <br/>
-                descripcion: <input type="text" name="descripcion" id="" value="<?=$des?>"> <br/>
+                descripcion: <input type="text" name="descripcion" id="" value='<?=$des?>'> <br/>
                 <input type="submit" value="enviar">
-
-                <p><?=$des?></p>
                 
             </fieldset>
         </form>
+
         </div>
         <div id="contenido">
-            <p>
-                <?php
-                     $fin=strlen($des)-1; 
-                    for($i=0; $i<(strlen($des)/2); $i++){
-                        if($des[$i] == $des[$fin]){
-                            print($des[$i]);
-                            print($des[$fin]);
-                            $pal=true;
-                            $fin-=1;
-                        }else{
-                            $pal=false;
-                        }
-                    }
-                ?>
-            </p>
             <?php if($_GET) { ?> 
-                <?php 
-                    calcular_caracter();
-                ?>
+                <p>
+                    <?php 
+                        $num_voc=0;
+                        $num_con=0;
+                        for($i=0; $i< strlen($des); $i++){
+                            $car=$des[$i];
+                            if(((ord($car)< 65 && ord($car)>90) || (ord($car)<97 && ord($car)>122)) && is_integer($car))  {
+
+                            }else{
+                                if(ord($car)== 65 || ord($car)== 97 || ord($car)== 69 || ord($car)== 101 || ord($car)== 73 || ord($car)== 105 || ord($car)== 79 || ord($car)== 111 || ord($car)== 85 || ord($car)== 117){
+                                    $num_voc+=1;
+                                }else{
+                                    $num_con+=1;
+                                }
+                            }
+                        }
+
+                        $fin=strlen($des)-1; 
+                    
+                        for($i=0; $i<(strlen($des)/2); $i++){
+                            if($des[$i] == $des[$fin]){
+                                $pal=true;
+                                $fin-=1;
+                            }else{
+                                $pal=false;
+                            }
+                        }
+                    ?>
+
+                </p>
             <ul>
                 <li>numero de vocales: <?=$num_voc?></li>
                 <li>numero de consonantes:<?=$num_con?></li>
-                <li>palindromo: <?php if($pal){print("Si");} print("No");?> </li>
+                <li>palindromo: <?php if($pal){print("Si");} else{print("No");}?> </li>
             </ul>
             <?php }?>
         </div>
