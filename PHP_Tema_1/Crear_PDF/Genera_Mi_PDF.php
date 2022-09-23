@@ -4,8 +4,14 @@ require('./fpdf184/fpdf.php');
 if(isset($GET)){
     $mipdf= new FPDF();
     $mipdf= AddPage();
-    $mipdf= set
 }
+$nombre=$_GET['nombre'];
+$apellido=$_GET['apellido'];
+$telefo=$_GET['telefono'];
+$fecha=$_GET['fecha'];
+$fondo=$_GET['color_fondo'];
+$gmail=$_GET['gmail'];
+$ausnto=$_GET['asundo'];
 ?>
 
 <!DOCTYPE html>
@@ -23,8 +29,8 @@ if(isset($GET)){
                     cabezera <br/>
                     nombre:<input type="text" name="nombre" id=""> <br/>
                     apellido:<input type="text" name="apellido" id=""> <br/>
-                    telefono:<input type="tel" name="telefono" id=""> <br/>
-                    fecha:<input type="text" name="fecha" id=""> <br/>
+                    telefono:<input type="text" name="telefono" id=""> <br/>
+                    fecha:<input type="date" name="fecha" id=""> <br/>
                 </fieldset>
                 <fieldset>
                     cuervo <br/>
@@ -34,6 +40,8 @@ if(isset($GET)){
                 </fieldset><br/>
                 <input type="submit" value="Genera PDF">
             </form>
+
+            <?php print("")?>
         </div>
     
 </body>
