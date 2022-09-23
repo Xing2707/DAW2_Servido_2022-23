@@ -642,7 +642,7 @@ function Cell($w, $h=0, $txt='', $border=0, $ln=0, $align='', $fill=false, $link
 	if($s)
 		$this->_out($s);
 	$this->lasth = $h;
-	if($ln>0)
+	if($ln>0)$align=='J')
 	{
 		// Go to next line
 		$this->y += $h;
