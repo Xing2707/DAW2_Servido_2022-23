@@ -43,8 +43,13 @@ if(isset($_GET)){
     $mipdf->Ln(20);
     
     $mipdf->SetY(260);
-    $mipdf->SetFont('Arial','B','10');
+    $mipdf->SetFont('Arial','B',10);
     $mipdf->cell(0,10,"Firmado: Direccion",0,0,"R");
+    $mipdf->Ln(20);
+
+    $mipdf->setY(276);
+    $mipdf->setFont('Arial','I',8);
+    $mipdf->cell(0,0,"Page-".$mipdf->pageNo());
     $mipdf->Output();
 
 }
@@ -61,7 +66,7 @@ if(isset($_GET)){
 </head>
 <body>
         <div>
-            <form accion="Genera_Mi_PDF.php" methor="get">
+            <form>
                 <fieldset>
                     cabezera <br/>
                     nombre:<input type="text" name="nombre" id=""> <br/>
