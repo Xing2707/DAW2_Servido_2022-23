@@ -91,6 +91,10 @@ function palitromo(){
             height: 70%;
             width: 70%;
         }
+
+        @media (max-width:320px){
+            #formulario>form>fieldset>.caja{width:90%}
+        }
     </style>
 </head>
 <body>
@@ -98,7 +102,7 @@ function palitromo(){
         <div id="formulario">
         <form action="Practica_1.php" methor="get">
             <fieldset>Formulario: <br/>
-                descripcion: <input type="text" name="descripcion" id="" value='<?=$des?>'> <br/>
+                descripcion: <input type="text" class="caja" name="descripcion" id="" value='<?=$des?>'> <br/><br/>
                 <input type="submit" value="enviar">
                 
             </fieldset>
