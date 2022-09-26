@@ -118,15 +118,52 @@ function palitromo(){
         }
         @media (max-width:320px){
             #formulario>form>fieldset>.caja{width:90%;}
+
+            #contenido>h3{
+                font-size: 60%;
+                width: 100%;
+            }
+
+            #formulario>form>fieldset>#texto{
+            font-size: 80%;
+            }
+
+            #formulario>form>fieldset>.caja{
+            padding: 1%;
+            width: 70%;
+            font-size: 90%;
+            }
+
+            #formulario>form>fieldset>.boton{
+            margin: 0.5%;
+            width: 70%;
+            padding: 1%;
+            font-size: 80%;
+            }
+
+            #contenido>ul>li{
+            margin: 1%;
+            font-size: 70%;
+            font-family:monospace;
+            color:slategrey;
+
+            }
+
         }
         #contenido>ul{
             margin: 3%;
             text-align: center;
-            list-style-image: url('gota.jpg');
             font-size: 150%;
+            list-style-image: url('gota.jpg');
             font-family:monospace;
             color:slategrey;
 
+        }
+        #contenido>h3{
+            text-align: center;
+            margin: 2%;
+            padding: 1%;
+            background-color: gold;
         }
     </style>
 </head>
@@ -145,7 +182,7 @@ function palitromo(){
         
         <div id="contenido">
             <?php if($vacio){?>
-                <h1>Deben Introducir Una Palabra!</h1>
+                <h3>Deben Introducir Una Palabra!</h3>
             <?php }else{ ?>
                 <?php if($_GET){ ?>
                     <?php
