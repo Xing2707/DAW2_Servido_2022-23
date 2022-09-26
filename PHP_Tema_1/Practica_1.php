@@ -72,7 +72,7 @@ function palitromo(){
             height: 80%;
             width: 80%;
             margin: 0px auto;
-            margin-top: 10%;
+            margin-top: 3%;
             border: 5px inset chartreuse;
         }
         #formulario{ 
@@ -80,8 +80,8 @@ function palitromo(){
             margin:0px auto;
             margin-top: 5%;
             margin-bottom: 5%;
-            height: 70%;
-            width: 70%;
+            height: 60%;
+            width: 60%;
         }
         body{
             background-color: aqua;
@@ -92,8 +92,41 @@ function palitromo(){
             width: 70%;
         }
 
+        #formulario>form>fieldset{
+            text-align: center;
+            padding: 3%;
+        }
+
+        #formulario>form>fieldset>.boton{
+            background-color: azure;
+            color:orangered;
+            margin: 0.5%;
+            width: 15%;
+            padding: 2%;
+            font-size: 120%;
+        }
+        #formulario>form>fieldset>.caja{
+            padding: 3%;
+            width: 50%;
+            font-size: 150%;
+        }
+        #formulario>form>fieldset>#texto{
+            font-size: 200%;
+            font-weight: bold;
+            color: silver;
+            margin: 0px auto;
+        }
         @media (max-width:320px){
-            #formulario>form>fieldset>.caja{width:90%}
+            #formulario>form>fieldset>.caja{width:90%;}
+        }
+        #contenido>ul{
+            margin: 3%;
+            text-align: center;
+            list-style-image: url('gota.jpg');
+            font-size: 150%;
+            font-family:monospace;
+            color:slategrey;
+
         }
     </style>
 </head>
@@ -101,9 +134,9 @@ function palitromo(){
     <div id="fondo">
         <div id="formulario">
         <form action="Practica_1.php" methor="get">
-            <fieldset>Formulario: <br/>
-                descripcion: <input type="text" class="caja" name="descripcion" id="" value='<?=$des?>'> <br/><br/>
-                <input type="submit" value="enviar">
+            <fieldset>
+                <span id="texto">descripcion:</span> <br/><br/> <input type="text" class="caja" name="descripcion" id="" value='<?=$des?>'> <br/><br/>
+                <input type="submit" class="boton" value="enviar">
                 
             </fieldset>
         </form>
