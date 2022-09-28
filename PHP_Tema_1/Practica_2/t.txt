@@ -1,0 +1,12 @@
+functio horario($valor){
+    $hora;
+    switch($valor){
+        case "Tutoria": $hora=1;
+        case "DWEC": $hora=3;
+        case "EIE": 
+            
+        case "ITGS_DAW":
+        case "DWES":
+        case "DAW": 
+    }
+}
