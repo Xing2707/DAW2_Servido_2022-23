@@ -1,10 +1,11 @@
 <?php
 $horario =[
     [" ","Lunes","Martes","Miercoles","Jueves","Viernes"],
-    ["15:05-16:00","Tutoria"],
+    ["15:05-16:00","Tutoria","","","",""],
     ["16:00-16:55","DAWC","ITGS","DIW","EIE","DWES"],
     ["16:55-17:50","DAWC","DAW","DIW","DAW","DWES"],
     ["17:50-18:45","DAWC","DAW","DIW","DAW","DWES"],
+    ["Regleo","Regleo","Regleo","Regleo","Regleo","Regleo",],
     ["19:10-20:05","EIE","DIW","DWES","DWES","DWEC"],
     ["20:05-21:00","EIE","DIW","DWES","DWES","DWEC"],
     ["21:00-21:45","ITGS","DIW","DWES","DWES","DWEC"],
@@ -16,13 +17,33 @@ function crear_tabla($var){
         print("<tr>");
         for($y=0; $y<count($var[$i]); $y++){ 
             if(($i>=0 && $y==0) || ($i==0 && $y>=0)){
-                print("<td class='F-H'>".$var[$i][$y]. "</td>");
-            }else{
-            print("<td>".$var[$i][$y]. "</td>");
-            }
+                if($var[$i][$y]=="Regleo"){
+                    print("<td colspan='6' id='reg'>".$var[$i][$y]."</td>");
+                }else{
+                    print("<td class='F-H'>".$var[$i][$y]. "</td>");
+                }
+            }else{ 
+                    if($var[$i][$y]=="Tutoria"){
+                        print("<td colspan='5' id='tuto'>".$var[$i][$y]."</td>");
+                    }else{
+                        if($var[$i][$y]==""){
+
+                        }else{
+                            if($var[$i][$y]=="Regleo"){
+
+                            }else{
+                                print("<td>".$var[$i][$y]."</td>");
+                            }
+                        }
+                    }
+                }
         }
-        print("</tr>");
     }
+    print("</tr>");
+}
+
+function igual(){
+    
 }
 
 ?>
@@ -48,6 +69,14 @@ function crear_tabla($var){
                 font-weight: bold;
                 border: 1px solid cyan;
             }
+            #tuto{
+                border: 1px solid black;
+                text-align:center;
+            }
+            #reg{
+                border: 1px solid cyan;
+                text-align:center;
+            }
     </style>
 </head>
 <body>
@@ -55,5 +84,6 @@ function crear_tabla($var){
         <table>
             <?=crear_tabla($horario)?>
         </table>
+
 </body>
 </html>
