@@ -18,7 +18,7 @@ $resultado = ["Señor Jorge", "Señora Bea", "Señor Paco", "Señora Amparo"];
 
 $comida = [
 
-         0 => ["Banana", 3, 56],
+    0 => ["Banana", 3, 56],
 
     1 => ["Chuleta", 1, 256]
 
