@@ -88,66 +88,8 @@ function color($var){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./horario.css">
     <title>Document</title>
-    <style>
-            h1{text-align:center;}
-            table{ 
-                margin: 0 auto;
-                padding: 1%;
-                width: 50%;
-                border: 2px solid gold;
-                border-collapse: collapse;
-            }
-            .F-H{
-                background-color: azure;
-                font-weight: bold;
-                border: 1px solid cyan;
-            }
-            #tuto{
-                border: 1px solid black;
-                text-align:center;
-                background-color: aquamarine;
-            }
-            #reg{
-                border: 1px solid cyan;
-                text-align:center;
-                background-color: violet;
-            }
-            .DAWC{
-                border: 1px solid black;
-                text-align:center;
-                background-color:palegoldenrod;
-            }
-            .DWES{
-                border: 1px solid black;
-                text-align:center;
-                background-color:aqua;
-            }
-            .DIW{
-                border: 1px solid black;
-                text-align:center;
-                background-color:lightpink;
-            }
-            .DAW{
-                border: 1px solid black;
-                text-align:center;
-                background-color:mediumpurple;
-            }
-            .ITGS{
-                border: 1px solid black;
-                text-align:center;
-                background-color:cornflowerblue;
-            }
-            .EIE{
-                border: 1px solid black;
-                text-align:center;
-                background-color:goldenrod;
-            }
-            .vacio{
-                border: 1px solid black;
-                background-color:whitesmoke;
-            }
-    </style>
 </head>
 <body>
         <h1>Horario</h1>

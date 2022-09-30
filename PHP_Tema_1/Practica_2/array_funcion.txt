@@ -9,4 +9,8 @@ Ejemplo
 
     $cuenta=['Xing5539','Bbc192700'];
     $cambio=[1=>'Hjk74839028'];
-    array_replace($cuento,$cambio);
+    $cambiado=array_replace($cuento,$cambio);
+
+    Respuesta:
+        si hace print_r($cambiado)
+        da resuldado ['Xing5539','Hjk74839028']
