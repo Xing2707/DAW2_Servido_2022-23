@@ -13,14 +13,14 @@ function sexo($var){
             $sex=false;
         }
     return ($sex)? "Seño: ".$var[0] :"Señora: ".$var[0] ;
-};
+}
 
-function nombre($elemen, $clave){
-    print("clave. $elemen");
-};
+// function nombre($elemen, $clave,$pref){
+//     $elemen = "$pref : $elemen";
+// };
 
 $per= array_map('sexo',$personas);
-$per2= array_walk($personas,'sexo','nombre');
+// array_walk($personas,'nombre','persona');
 
     print_r($per);
 ?>

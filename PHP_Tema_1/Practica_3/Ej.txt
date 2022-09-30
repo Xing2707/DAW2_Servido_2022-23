@@ -8,6 +8,8 @@ $personas = [
     [Amparo, 0],
 ];
 
+Usa funcion array_map
+
 Utiliza alguna de las funciones para generar un array de cadenas indicando el nombre de la persona y cómo tratarle con formalidad. Si el valor entero detrás del nombre es un 1 Hay que poner "Señor <nombre>", si es 0 hay que poner "Señora <nombre>"
 
 $resultado = ["Señor Jorge", "Señora Bea", "Señor Paco", "Señora Amparo"];
@@ -23,9 +25,28 @@ $comida = [
     2 => ["Pan", 1, 90]
 
     ]
-    
+
+Usa funcion array_reduce    
+
 Utiliza la función map_reduce para calcular la cantidad de calorías de la comida anterior.
 
 --
 
+Usa funcion array_filter
+
 Con el array de personas anterior, utiliza el array_filter para sacar un listado de Hombre y otro listado de mujeres.
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Funciones:  array_intersect, array_search y array_replace.
+Enunciado: Designa dos arrays con varios números. Algunos de ellos deberán coincidir entre ambas arrays. A continuación:
+
+    Crea un tercer array que contenga los números en común de los primeros dos. Habrá posiciones nulas.
+
+    Crea un cuarto array con las posiciones que le falten al anterior y un número asignado a cada una, y júntalo con el anterior.
+
+    Buca el índice de un valor en el array final (por ejemplo el del valor 13)
+
+    Finalmente, imprime todos los arrays que has generado para ver los cambios.
