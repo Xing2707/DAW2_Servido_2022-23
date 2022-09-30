@@ -10,14 +10,3 @@ Ejemplo
     $cuenta=['Xing5539','Bbc192700'];
     $cambio=[1=>'Hjk74839028'];
     array_replace($cuento,$cambio);
-
-Funcion array_replace_recursive
-
-Eeste funcion sirve para remplazar array pasando el prime elemento de forma cursiva
-
-se escribe array_replace_recursive($array_original,$array,...(otros arrays mas))
-Ejemplo
-    Si algun dia tengo un array  multidimensional y qiuero hace algun cambio de sobre prime elemeto de array necesito usar  array_replace_recursive
-
-    $cuento=['user'=>['Xing5539'], 'Password' =>['Bbc192700'],'datopersonal=>['16/07/20','647889165','M']'];
-    $cambio=['user'=>['Xing5539'], 'Password' =>['Bbc192700'],'datopersonal=>['29/08/21']'];

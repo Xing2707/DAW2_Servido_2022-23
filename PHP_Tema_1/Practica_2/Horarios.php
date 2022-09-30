@@ -1,7 +1,7 @@
 <?php
 $horario =[
     ["  ","Lunes","Martes","Miercoles","Jueves","Viernes"],
-    ["15:05-16:00","Tutoria"," "," "," "," "],
+    ["15:05-16:00","Tutoria","  ","  ","  ","  "],
     ["16:00-16:55","DAWC","ITGS","DIW","EIE","DWES"],
     ["16:55-17:50","DAWC","DAW","DIW","DAW","DWES"],
     ["17:50-18:45","DAWC","DAW","DIW","DAW","DWES"],
@@ -34,7 +34,7 @@ function crear_tabla($var){
                 }
             }else{ 
                     if($var[$i][$y]=="Tutoria"){
-                        print("<td colspan='5' id='tuto'>".$var[$i][$y]."</td>");
+                        print("<td id='tuto'>".$var[$i][$y]."</td>");
                     }else{
                         if($var[$i][$y]==" "){
 
@@ -57,7 +57,7 @@ function crear_tabla($var){
                                     $var[$num1][$y]=" ";
                                     print("<td ".$clase." rowspan='2'>".$var[$i][$y]."</td>");
                                     }else{
-                                        print("<td ".$clase." >".$var[$i][$y]."</td>");
+                                        print("<td ".$clase." class='vacio' >".$var[$i][$y]."</td>");
                                     }
                             }
                         }
@@ -142,6 +142,10 @@ function color($var){
                 border: 1px solid black;
                 text-align:center;
                 background-color:goldenrod;
+            }
+            .vacio{
+                border: 1px solid black;
+                background-color:whitesmoke;
             }
     </style>
 </head>
