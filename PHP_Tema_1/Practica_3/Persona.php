@@ -15,12 +15,20 @@ function sexo($var){
     return ($sex)? "Seño: ".$var[0] :"Señora: ".$var[0] ;
 }
 
-// function nombre($elemen, $clave,$pref){
-//     $elemen = "$pref : $elemen";
-// };
+function nombre($elemen, $clave){
+    
+    if($clave[0]==0){
+        print("Señora: ".$clave);
+    }else{
+        print("Señor: ".$clave);
+    }
+    
+ }
 
 $per= array_map('sexo',$personas);
-// array_walk($personas,'nombre','persona');
 
+    print("Array-map: <br>");
     print_r($per);
+    // print("<br> Array-walk: <br>");
+    // array_walk($personas,'nombre');
 ?>
