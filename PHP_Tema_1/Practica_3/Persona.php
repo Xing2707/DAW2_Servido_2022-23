@@ -25,7 +25,15 @@ function nombre($elemen, $clave){
     
  }
 
+ function ver_lista($var){
+    for($i=0; $i<count($var); $i++){
+        print("<li> ".$var[$i]." </li> <br> ");
+    }
+ }
+
 $per= array_map('sexo',$personas);
+
+ver_lista($per);
 
     print("Array-map: <br>");
     print_r($per);
