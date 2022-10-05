@@ -18,9 +18,10 @@ function Hombre($var){
         return $var[0];
     }
 }
-print("Mujer: \n");
+
+print("Mujer: <br>");
 print_r(array_filter($personas,"Mujer"));
-print("\n");
-print("Hombre: \n");
+print("<br>");
+print("Hombre: <br>");
 print_r(array_filter($personas,"Hombre"));
 ?>

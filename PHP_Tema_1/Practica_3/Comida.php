@@ -5,22 +5,11 @@ $comida = [
 2 => ["Pan", 1, 90],
 ];
 
-function suma($var, $sum){
-    $var+=$sum;
-    return $var;
+function suma($sum, $var){   //en el parte de sum se corre todo el array
+    
+    return $sum +=( $var[1] * $var[2]);
 }
 
-function caloria($var){
-    $cal;
-    for($i=0; $i<count($var); $i++){
-        $cal[$i]= $var[$i][2];
-    }
-    return $cal;
-}
-
-$calor=caloria($comida);
-
-var_dump(array_reduce($calor,"suma"));
-
+var_dump(array_reduce($comida,"suma"));
 
 ?>

@@ -15,11 +15,11 @@ function sexo($var){
     return ($sex)? "Seño: ".$var[0] :"Señora: ".$var[0] ;
 }
 
-// function nombre($elemen, $clave){
+ function nombre($elemen, $clave){   //En parte de elemen se correo todo el array
     
-//       print($elemen. $clave);
+       print((($elemen[1]==1)? "Seño: ".$elemen[0] : " <br> Señora: ".$elemen[0]."<br>"));
     
-//  }
+  }
 
 
  function ver_lista($var){
@@ -30,10 +30,14 @@ function sexo($var){
 
 $per= array_map('sexo',$personas);
 
-ver_lista($per);
+print("Array-map: <br>");
+print_r($per);
 
-    print("Array-map: <br>");
-    print_r($per);
-    // print("<br> Array-walk: <br>");
-    // array_walk($personas,"nombre");
-?>
+print("<br><br> Array_walk: <br>");
+var_dump(array_walk($personas,'nombre')); 
+
+
+// ver_lista($per);
+//     // print("<br> Array-walk: <br>");
+//     // array_walk($personas,"nombre");
+// ?>
