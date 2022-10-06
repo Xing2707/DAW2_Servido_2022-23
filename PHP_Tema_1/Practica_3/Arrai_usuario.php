@@ -27,7 +27,7 @@
 //Asigna nueva contraseña para los usuario que no tiene contraseña
     function asigna_contraseña($var){
         
-        return ($var =="")? $var="tmp2022" : $var;
+        return ($var ==null)? $var="tmp2022" : $var;
     }
 
     $usuario_3 = array_map('asigna_contraseña',$usuarios);
