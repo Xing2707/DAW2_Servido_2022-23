@@ -1,0 +1,26 @@
+Problema de error de extracción de Git
+Problema al realizar git pull hoy, debería ser la corrupción de datos git causada por el apagado anormal de la computadora ayer:
+
+Esto me ha sucedido de vez en cuando, y mi solución en ese momento era estúpida y simple, que era eliminar el código actual y volver a descargar una copia del código del repositorio remoto, solo asegúrese de que el repositorio remoto sea el código más reciente y completo.
+Esta vez es diferente, hay muchos códigos de resultados intermedios que tardan en generarse localmente, y lleva tiempo reconstruir después de la eliminación, por lo que no quiero usar un método tan estúpido.
+Encuentre este artículo sobre stackoverflow "¿cómo corregir el error GIT: el archivo de objeto está vacío?", varias respuestas proporcionan diferentes soluciones, el primer método, tan molesto y complejo, no puede continuar, y luego descubrió que muchas traducciones domésticas de las publicaciones de este artículo, la introducción es el primer método.
+
+La segunda respuesta proporciona un método mucho más simple y claro, y el proceso consta de tres pasos:
+
+Así que prueba este método:
+
+paso 1:
+Elimine cualquier archivo de objeto vacío debido a la corrupción de datos. Realice el primer paso sin ningún resultado
+
+$ find .git/objects/ -type f -empty | xargs rm
+
+paso 2:
+Descargar recuperar los objetos que faltan
+$ git fetch -p
+
+paso 3:
+Realizar una comprobación completa del almacén de objetos
+$ git fsck --full
+
+Después de completar tres pasos, realice la extracción de git nuevamente, el error desaparece con éxito.
+$ git pull
