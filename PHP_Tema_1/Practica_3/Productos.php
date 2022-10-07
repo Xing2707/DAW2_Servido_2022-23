@@ -15,23 +15,51 @@ $productos = [
         "helado_chocolate" => 2.99,
     ];
 
-    for($i=0; $i<count($productos); $i++){
-        $cantidad[$i]=null;
-    }
-
-
     function mostrar_producto($var){
         $nombre=array_keys($var);
         for($i=0; $i<count($var); $i++){
             print("<tr>");
                 print("<td>".$nombre[$i]."</td>  <td>" .$var[$nombre[$i]]. "</td> ");
-                print("<td> <input type='number' step='any' name='".$nombre[$i]."'/> </td>" );
+                print("<td> <input type='number' step='any' name='".$nombre[$i]."' value='".$_GET[$nombre[$i]]."'/> </td>" );
             print("</tr>");
         }
     } 
     
+    $envia=false;
+    $fruta=array_keys($productos);
+    if(count($_GET)>0){
 
-    
+       for($i=0; $i<count($productos); $i++){
+                $precio_u[$i]=($productos[$fruta[$i]]* $_GET[$fruta[$i]]);
+        }
+        
+        $tot=array_sum($precio_u);
+        array_push($precio_u,$tot);
+
+        $envia=true;
+
+        function factura(){
+            global $productos;
+            global $fruta;
+            global $precio_u;
+
+            print("<tr> <td colspan='4'> Producto Comprado </td> </tr>");
+            print("<tr> <td> Nombre </td> <td> Precio_U </td> <td> cantidad </td> <td> Precio_F </td> </tr>");
+            print("<tr>");
+
+            for($i=0; $i<count($productos); $i++){
+                if($_GET[$fruta[$i]]>0){
+                    print("<td> ".$fruta[$i]." </td>  <td> " .$productos[$fruta[$i]]. " </td> <td> ".$_GET[$fruta[$i]] ." </td> <td> ".$precio_u[$i]." </td>");
+                print("</tr>");
+                }
+                if($i==count($productos)-1){
+                    print("<tr> <td colspan='4'> total:".$precio_u[count($precio_u)-1]."</tr> </td>");
+                }
+            }
+        }
+
+    }
+
 
 ?>
 
@@ -91,18 +119,19 @@ $productos = [
             <h1>Lista de productos</h1>
             <form action="Productos.php" method="get" >
                 <table>
-                    <tr>
-                        <td>Nombre</td>
-                        <td>Precio</td>
-                        <td>Cantidad</td>
-                    </tr>
-                    <?=mostrar_producto($productos)?>
-                    <tr>
-                        <td colspan="3"><input type="submit" value="Enviar" id="boton"/></td>
-                    </tr>
-                    <tr>
-                        <td colspan="3" id="total">total:</td>
-                    <tr>
+                    <?php if(!$envia){ ?>
+                        <tr>
+                            <td>Nombre</td>
+                            <td>Precio</td>
+                            <td>Cantidad</td>
+                        </tr>
+                        <?=mostrar_producto($productos)?>
+                        <tr>
+                            <td colspan="3"><input type="submit" value="Enviar" id="boton"/></td>
+                        </tr>
+                    <?php } else{?>
+                        <?php factura() ?>
+                    <?php }?>
                 </table>
             </form>
         </div>
