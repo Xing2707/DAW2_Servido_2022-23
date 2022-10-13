@@ -1,8 +1,9 @@
-<?php 
+<?php
 
+//Este codigo es una verguenza! No usar mas!
+$num=0;
 function suma($var){
-    $var2==$var;
-    return $var2;
+    return $var2+=$var;
 }
 ?>
 
@@ -17,7 +18,7 @@ function suma($var){
 <body>
         <div>
             <?php for($i=0; $i<10; $i++){ ?>
-                <p> <?=suma(mt_rand(1,100))?> </p>
+                <p> <?=$num+=suma(mt_rand(1,100))?> </p>
             <?php } ?>
         </div>
 </body>

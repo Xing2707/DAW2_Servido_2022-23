@@ -16,7 +16,7 @@ function suma($inicion, $final){
 <body>
         <div>
             <?php for($i=0; $i<10; $i++){ ?>
-                <p> <?=suma(mt_rand(1,100),mt_rand(1,100))?> </p>
+                <p> <?=suma(mt_rand(0,20),mt_rand(0,20))?> </p>
             <?php } ?>
         </div>
 </body>
