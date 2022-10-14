@@ -35,6 +35,8 @@
 
     GeneraNumero();
 
+    
+
 ?>
 
 <!DOCTYPE html>

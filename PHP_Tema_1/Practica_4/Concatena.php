@@ -12,6 +12,27 @@
             }
         }
     }
+
+    // function concatenar(stirng $sepeardor, array ...$cadenas):string{
+    //     $salida= "";
+    //     $primero = true;
+    //     foreach($cadenas as $cadena){
+    //         if($primero){
+    //             $primero =false;
+    //             $salida=$cadena;
+    //         }else{
+    //             $salida .= $separador.$cadena;
+    //         }
+    //         return $salida;   
+    //     }
+    // }
+
+
+    // function concatenar(stirng $sepeardor, array ...$cadenas):string{
+    //     return implode($separador,$cadenas);  
+    // }
+
+    //implode es un funcion que se une el parametro de strng con aary. .hola.mundo
 ?>
 
 
