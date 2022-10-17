@@ -3,6 +3,10 @@
         $c=$b;
         $b=$a;
         $a=$c;
-        return $c.=$a.$b;
+        return $f.=$a.$b;
     }
+
+    $valor=intercambio(10,9);
+
+    print($valor);
 ?>
