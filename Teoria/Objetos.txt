@@ -1,0 +1,11 @@
+PHP no hace falta sobre carga de metro entre clases
+
+Sintaxis
+    class MiClase{
+        public $variable1
+        private $variable2
+        this-> atributo;
+    }
+
+    const seff :::
+    

@@ -8,7 +8,8 @@
     ];
     
       function pintar($item,$clave){
-        print($clave." <input name='" .$clave. "' value='" .$item. "' /> <br>");
+        $tipo=(is_int($item))? 'number' : 'text';
+        print($clave." <input name='" .$clave. "' value='" .$item. "' type='" .$tipo. "'/> <br>");
       }
     function formulario( array $valor){
       array_walk($valor,"pintar");    

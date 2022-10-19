@@ -14,11 +14,13 @@
             }elseif(is_double($valor)){
                 $valor-=($valor*2);
             }elseif(is_string($valor)){
-                if( ctype_upper($valor)){
-                    $valor=strtolower($valor);
-                }else{
-                    $valor=strtoupper($valor);
-                }
+
+                $valor = strtolower($valor) ^ strtoupper($valor) ^ $valor; //Sirve para hace intercambio de mayuscula y minuscula de una string(EJ $a="Ab" resultado:$a="aB") hacieneto operacion XOR de los 3 variables
+                // if( ctype_upper($valor)){
+                //     $valor=strtolower($valor);
+                // }else{
+                //     $valor=strtoupper($valor);
+                // }
             }
             
             if(is_array($valor)){
@@ -29,5 +31,5 @@
             }
         }
     }
-    ModificaAry(3,10,20,"hola", 'HOLA', [1,2,3], [1], 20.50);
+    ModificaAry(3,10,20,"HOla", 'HOLA', [1,2,3], [1], 20.50);
 ?>

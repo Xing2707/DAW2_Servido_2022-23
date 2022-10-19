@@ -5,16 +5,13 @@ $opciones = [
   "Cáceres" => 56,
 ];
 
-function pintar($item,$clave){
-    if(strtolower($clave)=="madrid"){
-        print("<option value='" .$item. "' selected > ".$clave. "</option>");
-    }else{
-        print("<option value='" .$item. "'> ".$clave. "</option>");
-    }
+function pintar($item,$clave,$seleccionado){
+    $sel=($item==$seleccionado)? 'selected' :'';
+    print("<option value='" .$item. "'".$sel." > ".$clave. "</option>");
 }
 
-function seleccion(array $valor){
-    array_walk($valor,"pintar");
+function seleccion(array $valor,int $seleccionado = -1){
+    array_walk($valor,"pintar",$seleccionado);
 }
 ?>
 
@@ -29,7 +26,7 @@ function seleccion(array $valor){
 <body>
     <form>
         <select>
-            <?=seleccion($opciones)?>
+            <?=seleccion($opciones,17)?>
         </select>
     </form>
 </body>
