@@ -3,26 +3,18 @@
 class circulos{
     private const pi =M_PI;
     private $radio;
-    private $area;
 
-    public function setRadio(int $valor){
+    public function setRadio(float $valor){
         $this -> radio=$valor;
     }
 
-    public function getRadio(){
+    public function getRadio():float {
         return $this -> radio;
     }
 
-    public function setArea(int $valor){
-        $this -> area=$valor;
-    }
-
     public function getArea(){
-        return $this -> area;
+        return self :: pi * $this -> radio * $this -> radio;
     }
 
-    public function mostrarPi(){
-        return self :: pi;
-    }
 }
 ?>
