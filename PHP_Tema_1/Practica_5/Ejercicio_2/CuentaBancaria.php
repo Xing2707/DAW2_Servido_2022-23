@@ -1,6 +1,6 @@
 <?php
     class CuentaBancaria{
-        public static int $numerocuenta = 100001;
+        private static int $numerocuenta = 100001;
         private string $nombre;
         private float $saldo;
 
