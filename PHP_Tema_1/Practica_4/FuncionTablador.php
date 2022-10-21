@@ -10,7 +10,7 @@
     function pintar($item,$clave){
         if(is_array($clave)){
             print(gettype($clave)."<br>");
-            print("\n\n\n".$item."<br>");
+            print("___".$item."<br>");
         }else{
             print($item);
         }

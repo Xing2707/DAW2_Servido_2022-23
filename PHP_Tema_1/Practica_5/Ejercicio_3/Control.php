@@ -1,5 +1,7 @@
 <?php
+    require('Coche.php');
     require('CocheGrua.php');
+    require('cocheconRemolque.php');
 
     $coche1 =new coche;
     $coche1 -> setMatricula("1000");
@@ -44,6 +46,6 @@
     $ary;
     
     $ary=[$coche1,$coche2,$coche4,$coche6];
-    print_r($ary);
-    array_walk($ary,function($item) {$item -> pintarInformacion();})
+    //print_r($ary);
+    array_walk($ary,function(object $item) {echo $item -> pintarInformacion();})
 ?>
