@@ -7,7 +7,7 @@
         string $apellido,
         string $deporte){
             parent:: __construct($nombre,$apellido,$deporte);
-            $this -> nombre =$nombre.="(Premium)";
+            $this -> nombre =$nombre.="(Admin)";
         }
     }
 ?>
