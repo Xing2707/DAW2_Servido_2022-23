@@ -6,8 +6,7 @@
         string $nombre,
         string $apellido,
         string $deporte){
-            parent:: __construct($nombre,$apellido,$deporte);
-            $this -> nombre =$nombre.="(Admin)";
+            parent:: __construct($nombre.="(Admin)",$apellido,$deporte);
         }
     }
 ?>

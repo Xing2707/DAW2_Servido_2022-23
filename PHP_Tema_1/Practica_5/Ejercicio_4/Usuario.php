@@ -19,6 +19,8 @@
             $this -> apellido = $apellido;
             $this -> nivel = 0;
             $this -> deporte = $deporte;
+            $this -> partidos=[];
+
         }
         
         //Getter y Setter
@@ -40,10 +42,10 @@
 
         public function setPartidos($partidos){ $this->partidos = $partidos; }
 
-        public function introducirResultado(String $valor){
+        public function introducirResultado(string $valor){
             switch($valor){
                 case "victoria":
-                    $this -> partidos =[$valor];
+                    array_push($this -> partidos,$valor);
                         $this -> acumuladorVictoria ++;
                     if($this -> acumuladorVictoria == self :: victoria){
                         $this -> nivel++;
@@ -51,7 +53,7 @@
                     }
                     break;
                 case "derrota":
-                    $this -> partidos =[$valor];
+                    array_push($this -> partidos,$valor);
                     $this -> acumuladorDerrota ++;
                     if($this -> acumuladorDerrota == self :: victoria){
                         $this -> nivel--;
@@ -59,23 +61,23 @@
                     }
                     break;
                 case "empate":
-                    $this -> partidos =[$valor];
+                    array_push($this -> partidos,$valor);
                     break;
             }
         }
         
         public function imprimirInformacion(){
-             return
-                "<p class='user'> Nombre y Apellido: ".$this->nombre." , ".$this->apellido." <br>Deporte: ".$this->deporte."<br>Nivel: ".$this->nivel."</p>
-                 <ul> Partidos:".
-                    array_walk($this->partidos,function($tiem,$calve){
-                       if(empty($item)){
-                        return print("<li>No Tiene nigul partido</li>");
-                       }else{
-                        print("<li>".$item."</li>");
-                       }
-                    })
-                 . "</ul>";
+             return 
+                    "<p class='user'> Nombre y Apellido: ".$this->nombre." , ".$this->apellido." <br>Deporte: ".$this->deporte."<br>Nivel: ".$this->nivel."</p>
+                        <ul> Partidos:".
+                            array_walk($this->partidos,function($item){
+                            if(empty($item)){
+                                return print("<li>No Tiene nigul partido</li>");
+                            }else{
+                                print("<li>".$item."</li>");
+                            }
+                            })
+                    . "</ul>";
         }
 
         public function CrearPartidos(){
