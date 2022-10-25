@@ -43,21 +43,24 @@
         public function introducirResultado(String $valor){
             switch($valor){
                 case "victoria":
-                    array_push($this -> partidos,$valor);
+                    $this -> partidos =[$valor];
                         $this -> acumuladorVictoria ++;
                     if($this -> acumuladorVictoria == self :: victoria){
                         $this -> nivel++;
                         $this -> acumuladorVictoria=0;
                     }
+                    break;
                 case "derrota":
-                    array_push($this -> partidos,$valor);
+                    $this -> partidos =[$valor];
                     $this -> acumuladorDerrota ++;
                     if($this -> acumuladorDerrota == self :: victoria){
                         $this -> nivel--;
                         $this -> acumuladorDerrota=0;
                     }
+                    break;
                 case "empate":
-                    array_push($this -> partidos,$valor);
+                    $this -> partidos =[$valor];
+                    break;
             }
         }
         
