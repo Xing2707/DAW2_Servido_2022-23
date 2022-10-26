@@ -48,7 +48,7 @@ define("USER_CHANGE_LEVEL", 6);
         public function introducirResultado(string $valor){
             switch($valor){
                 case "victoria":
-                    $this -> validar($valor,$this->acumuladorVictoria);
+                    ($this -> validar($valor))? $this -> acumuladorVictoria++ : $this -> acumuladorVictoria=0;
                     array_push($this -> partidos,[$this ->CrearPartidos(),$valor]);
                     if($this -> acumuladorVictoria == $this -> victoria){
                         $this -> nivel++;
@@ -57,7 +57,7 @@ define("USER_CHANGE_LEVEL", 6);
                     }
                     break;
                 case "derrota":
-                    $this -> validar($valor,$this -> acumuladorDerrota);
+                    ($this -> validar($valor))? $this -> acumuladorDerrota++ : $this -> acumuladorDerrota=0;
                     array_push($this -> partidos,[$this ->CrearPartidos(),$valor]);
                     if($this -> acumuladorDerrota == $this -> victoria){
                         $this -> nivel--;
@@ -88,15 +88,13 @@ define("USER_CHANGE_LEVEL", 6);
             print("</ul>");
         }
 
-        public function validar(string $valor,int $valor2){
+        public function validar(string $valor){
             if($this -> partidos[array_key_last($this-> partidos)][1]==null){
-                  return $valor2++;
-                  echo $valor2;
+                  return true;
             }elseif($this -> partidos[array_key_last($this-> partidos)][1]==$valor){
-                  return $valor2 ++;
-                  echo $valor2;
+                  return true;
             }else{
-                  return $valor2 =0;
+                  return false;
             }
         }
 
