@@ -1,11 +1,12 @@
 <?php
+define("USER_CHANGE_LEVEL", 6);
     class Usuario{
         private string $nombre;
         private string $apellido;
         private string $deporte;
         private int $nivel;
         private array $partidos;
-        private const victoria = 6;
+        protected $victoria;
         private int $acumuladorVictoria=0;
         private int $acumuladorDerrota=0;
 
@@ -20,6 +21,7 @@
             $this -> nivel = 0;
             $this -> deporte = $deporte;
             $this -> partidos=[];
+            $this -> victoria=USER_CHANGE_LEVEL;
 
         }
         
@@ -42,46 +44,60 @@
 
         public function setPartidos($partidos){ $this->partidos = $partidos; }
 
+
         public function introducirResultado(string $valor){
             switch($valor){
                 case "victoria":
-                    array_push($this -> partidos,$valor);
-                        $this -> acumuladorVictoria ++;
-                    if($this -> acumuladorVictoria == self :: victoria){
+                    $this -> validar($valor,$this->acumuladorVictoria);
+                    array_push($this -> partidos,[$this ->CrearPartidos(),$valor]);
+                    if($this -> acumuladorVictoria == $this -> victoria){
                         $this -> nivel++;
+                        if($this-> nivel > $victoria){ $this -> nivel ==$victoria; }
                         $this -> acumuladorVictoria=0;
                     }
                     break;
                 case "derrota":
-                    array_push($this -> partidos,$valor);
-                    $this -> acumuladorDerrota ++;
-                    if($this -> acumuladorDerrota == self :: victoria){
+                    $this -> validar($valor,$this -> acumuladorDerrota);
+                    array_push($this -> partidos,[$this ->CrearPartidos(),$valor]);
+                    if($this -> acumuladorDerrota == $this -> victoria){
                         $this -> nivel--;
+                        if($this -> nivel < 0){ $this -> nivel ==0; }
                         $this -> acumuladorDerrota=0;
                     }
                     break;
                 case "empate":
-                    array_push($this -> partidos,$valor);
+                    array_push($this -> partidos,[$this ->CrearPartidos(),$valor]);
                     break;
             }
         }
         
         public function imprimirInformacion(){
-             return 
-                    "<p class='user'> Nombre y Apellido: ".$this->nombre." , ".$this->apellido." <br>Deporte: ".$this->deporte."<br>Nivel: ".$this->nivel."</p>
-                        <ul> Partidos:".
-                            array_walk($this->partidos,function($item){
-                            if(empty($item)){
-                                return print("<li>No Tiene nigul partido</li>");
-                            }else{
-                                print("<li>".$item."</li>");
-                            }
-                            })
-                    . "</ul>";
+             echo "<p class='user'> Nombre y Apellido: ".$this->nombre." , ".$this->apellido." <br>Deporte: ".$this->deporte."<br>Nivel: ".$this->nivel."</p>";
+             $this -> imprimirLista($this -> partidos);              
         }
 
         public function CrearPartidos(){
             return "<p>".$this -> nombre ." ha creado partido</p>";
+        }
+
+        public function imprimirLista(array $valor){
+            print("<ul> Partidos:");
+            for($i=0; $i<count($valor);$i++){
+                print("<li>".$valor[$i][0].$valor[$i][1]."</li>");
+            }
+            print("</ul>");
+        }
+
+        public function validar(string $valor,int $valor2){
+            if($this -> partidos[array_key_last($this-> partidos)][1]==null){
+                  return $valor2++;
+                  echo $valor2;
+            }elseif($this -> partidos[array_key_last($this-> partidos)][1]==$valor){
+                  return $valor2 ++;
+                  echo $valor2;
+            }else{
+                  return $valor2 =0;
+            }
         }
 
     }

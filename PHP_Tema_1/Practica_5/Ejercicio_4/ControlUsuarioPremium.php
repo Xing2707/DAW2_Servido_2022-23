@@ -1,14 +1,17 @@
 <?php
     require("Usuario.php");
     require("UsuarioPremium.php");
-    $user1=new UsuarioPremium("PePe","Calcia","tenis");
-    $user2=new UsuarioPremium("Ana","Maria","tenis");
+    $user1=new UsuarioPremium("Cesar","Ignacio","futbool");
+    $user2=new UsuarioPremium("Orga","Visto","tenis");
 
+    $user1 -> introducirResultado("victoria");
     $user1 -> introducirResultado("victoria");
     $user1 -> introducirResultado("victoria");
     $user1 -> introducirResultado("derrota");
     $user1 -> introducirResultado("victoria");
     $user1 -> introducirResultado("empate");
+    $user1 -> introducirResultado("derrota");
+    $user1 -> introducirResultado("derrota");
 
 ?>
 
