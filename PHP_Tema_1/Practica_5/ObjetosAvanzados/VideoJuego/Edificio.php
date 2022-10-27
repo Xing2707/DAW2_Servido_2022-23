@@ -1,14 +1,13 @@
 <?php
-    trait descripcion {
-        private string $descripcion;
-        public function getDescripcion(){ return $this->descripcion; }
-        public function setDescripcion($descripcion){ $this->descripcion = $descripcion; }
-    }
+   
     class Edificio{
-        use descripcion;
+        use Descripcion;
+        use Posicion;
         private int $altura;
 
-        public function getAltura():int { return $altura; }
+        public function setAltura(int $altura){ $this -> altura = $altura; }
+        public function getAltura():int { return $this -> altura; }
 
     }
+
 ?>
