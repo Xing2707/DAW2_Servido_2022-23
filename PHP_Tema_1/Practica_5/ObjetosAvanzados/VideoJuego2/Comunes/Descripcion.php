@@ -1,5 +1,5 @@
 <?php
-    // namespace Juego;
+     namespace Comunes;
      trait Descripcion {
         private string $descripcion;
         public function getDescripcion(){ return $this->descripcion; }

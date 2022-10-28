@@ -1,7 +1,6 @@
 <?php
-    // namespace Juego;
-    require_once("IntefazPersonaje.php");
-    abstract class PersonajeMago implements AccionPersonaje{
+    namespace Personajes;
+    abstract class PersonajeMago implements IntefazPersonaje{
         public function defender():string { return "hechizo protector"; }
         abstract public function atacar():string ;
     }

@@ -1,5 +1,5 @@
 <?php
-    // namespace Juego;
+    namespace Comunes;
     trait Posicion{
         private int $x;
         private int $y;
