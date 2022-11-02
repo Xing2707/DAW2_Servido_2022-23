@@ -1,31 +1,32 @@
 <?php 
-    //$DireccionIP=$_SERVER['REMOTE_ADDR'];
+    $DireccionIP=$_SERVER['REMOTE_ADDR'];
 
     $Ruta=$_SERVER['HTTP_USER_AGENT'];
-    $posiconInical=strpos($Ruta,';',0)+1;
-    $Equipo=substr($Ruta,$posiconInical,7);
+    $PosicionInicial=strpos($Ruta,';',0)+1;
+    $Longitud=strpos($Ruta,';',$PosicionInicial)-$PosicionInicial;
+    $Equipo=substr($Ruta,$PosicionInicial,$Longitud);
 
     $GetIdioma=$_SERVER['HTTP_ACCEPT_LANGUAGE'];
     $PosicionIdioma=strpos($GetIdioma,'-',0);
     $Idioma=substr($GetIdioma,0,$PosicionIdioma);
 
-    function imprimir($valo1,$valo2){
+    function imprimir(string $valo1,string $valo2,string $valo3){
         switch($valo2){
             case "en":  
                 print("<h1>Welcome</h1>");
-                print("<p> Your visiting IP address is:".$_SERVER['REMOTE_ADDR']."</p>");
-                print("<p> Your Visiting Team is: ".$valo1."</p>");
+                print("<p> Your visiting IP address is:".$valo3."</p>");
+                print("<p> Your Visiting computer is: ".$valo1."</p>");
                 print("<p> Your visiting language is: English");
                 break;
             case "es":
                 print("<h1>Bien Venido</h1>");
-                print("<p> Tu direccion IP de visita es: ".$_SERVER['REMOTE_ADDR']."</p>");
+                print("<p> Tu direccion IP de visita es: ".$valo3."</p>");
                 print("<p> Tu Equipo de visita es: ".$valo1."</p>");
                 print("<p> Tu idioma de visita es: Español");
                 break;
             case "zh":
                 print("<h1>欢迎</h1>");
-                print("<p> 您的访问IP地址是: ".$_SERVER['REMOTE_ADDR']."</p>");
+                print("<p> 您的访问IP地址是: ".$valo3."</p>");
                 print("<p> 您的访问计算机是: ".$valo1."</p>");
                 print("<p> 您的访问语言是:中文");
                 break;
@@ -42,7 +43,7 @@
 </head>
 <body>
     <div>
-        <?=imprimir($Equipo,$Idioma)?>
+        <?=imprimir($Equipo,$Idioma,$DireccionIP)?>
     </div>
 </body>
 </html>
