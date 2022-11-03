@@ -1,6 +1,7 @@
 <?php
     $tema="";
     $hora=date("H");
+    echo $hora;
     $minuto=date("i");
     $opcionesMinuto =[0,15,30,45];
 
@@ -23,19 +24,19 @@
 
     //verificar errores
     if(isset($_POST['Enviar'])){
-        if(isset($_POST['tema']) && $_POST['tema'] != ""){
+        if(!empty($_POST['tema'])){
             $tema = $_POST['tema'];
         }else{
             $errores['tema'] = 'No puede estar vacio';
         }
 
-        if(isset($_POST['hora']) && $_POST['hora'] != ""){
+        if(!empty($_POST['hora'])){
             $hora = $_POST['hora'];
         }else{
             $errores['hora'] = 'No puede estar vacio';
         }
 
-        if(isset($_POST['minuto']) && $_POST['minuto'] != ""){
+        if(!empty($_POST['minuto'])){
             $minuto = $_POST['minuto'];
         }else{
             $errores['minuto'] = 'No puede estar vacio';
@@ -51,8 +52,9 @@
     
             //Redireccionar
             header("Location: Listado.php");
-    
-            //exit();
+
+            //salir
+            exit();
         }
     }
 
@@ -80,8 +82,8 @@
 <body>
     <h1>Discoteca</h1>
     <form action="", method="post">
-        <label for="Tema">Tema</label>
-        <input type="text" name="Tema" id="Tema" placeholder="Pon tu tema de musica" value="<?=$tema?>"><br><br>
+        <label for="tema">Tema</label>
+        <input type="text" name="tema" id="tema" placeholder="Pon tu tema de musica" value="<?=$tema?>"><br><br>
         <?php
             if(isset($errores['tema'])){
                 echo"<div class='error'>";
