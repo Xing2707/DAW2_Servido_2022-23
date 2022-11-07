@@ -1,7 +1,6 @@
 <?php
     $tema="";
     $hora=date("H");
-    echo $hora;
     $minuto=date("i");
     $opcionesMinuto =[0,15,30,45];
 
@@ -115,13 +114,13 @@
         ?>
         <?php?>
 
-        <?php
+        <!-- <?php
             if(isset($errores['minuto'])){
                 echo"<div class='error'>";
                 echo"<p>".$errores['minuto']."</p>";
                 echo"</div>";
             }
-        ?>
+        ?> -->
 
         <label><input type="submit" name="Enviar" value="Enviar"></label>
     </form>

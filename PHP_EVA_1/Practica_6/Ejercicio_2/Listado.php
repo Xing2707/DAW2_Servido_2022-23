@@ -3,6 +3,14 @@ $data =file_get_contents("tema.csv");
 
 $data= explode("\n",$data);
 array_pop($data);
+
+function cleanData($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+  }
+  
 ?>
 
 <!DOCTYPE html>
@@ -38,7 +46,7 @@ array_pop($data);
             foreach($data as $key => $valor){
                 echo "<tr>";
                     $valor = explode(";",$valor);
-                echo "<td>" .$valor[0]. "</td>";
+                echo "<td>" .cleanData($valor[0]). "</td>";
                 echo "<td>" .$valor[1]. "</td>";
                 echo "<td>" .$valor[2]. "</td>";
                 echo "</tr>";
@@ -47,5 +55,8 @@ array_pop($data);
         </tbody>
 
     </table>
+
+    <a href="./Nuevo.php">Volver</a>
+
 </body>
 </html>
