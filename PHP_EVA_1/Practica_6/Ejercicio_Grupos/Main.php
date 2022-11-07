@@ -27,6 +27,15 @@
              print($errores[1]);
         }
 
+        $descripcion=new Textarea();
+        if($descripcion->validar($_POST['Descripcion'])){
+            $descripcion->setDescripcion($_POST['Descripcion']);
+            print("Sobre ti:" .$descripcion->getDescripcion());
+        }else{
+            array_push($errores,$descripcion->error());
+            print($errores[2]);
+        }
+
     }
 ?>
 <!DOCTYPE html>
@@ -46,6 +55,8 @@
         Lectura<input type="checkbox" name="Hobby[]" value="Lectura" id="Lectura"/>
         VideoJuego<input type="checkbox" name="Hobby[]" value="VideoJuego" id="VideoJuego"/>
         Cine<input type="checkbox" name="Hobby[]" value="Cine" id="Cine"/><br>
+
+        <textarea name="Descripcion" value="Detalla mas tus hobbys u otros hobbys"></textarea>
         <input type="submit" name="Enviar" value="Enviar"/>
     </form>
 </body>
