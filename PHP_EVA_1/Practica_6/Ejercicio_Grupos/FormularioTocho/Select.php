@@ -5,6 +5,8 @@ class Select extends Validad{
 
     private $Provincia = [" ","MADRID","BARCELONA","VALENCIA","MURCIA","SEVILLA"];
     private $nombre="Provincia";
+    function getNombre(){return $this->nombre;}
+
 
     function crear($valor){
             if(empty($valor)){
@@ -24,7 +26,7 @@ class Select extends Validad{
                             }else{
                                 echo "<option value='$op' selected>$op</option>";
                             }
-                        },$valor);
+                        },$valor[$this->nombre]);
                     echo"</select>";
                 }else{
                     echo"<select name='$this->nombre' id='$this->nombre'>";

@@ -4,6 +4,7 @@ require_once('Validad.php');
 class TextArea extends Validad{
 
     private $nombre="Descripcion";
+    function getNombre(){return $this->nombre;}
 
     function crear($valor){
             if(empty($valor)){
@@ -20,7 +21,7 @@ class TextArea extends Validad{
     }
 
     function comprobar($valor,$nombre){
-        if(array_key_exists($nombre,$valor) && !empty(valor[$nombre])){
+        if(array_key_exists($nombre,$valor) && !empty($valor[$nombre])){
             return true;
         }else{
             return false;

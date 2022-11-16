@@ -16,30 +16,30 @@ $labelNumber = "Edad";
 $labelNombre = "Nombre";
 $labelApellido = "Apellido";
 
-/*function cleanData($data) {
+function cleanData($data) {
     $data = trim($data);
     $data = stripslashes($data);
     $data = htmlspecialchars($data);
     return $data;
-}*/
+}
 
 if(isset($_POST['enviar'])){
-    if($textoN->comprobar() && $textAp->comprobar() && $textA->comprobar() && $select->comprobar() && $check->comprobar() && $radio->comprobar() && $numero->comprobar()){
+    if(!empty($_POST[$labelNombre]) && !empty($_POST[$labelApellido]) && !empty($_POST[$labelNumber]) && !empty($_POST[$select->getNombre()]) && !empty($_POST[$check->getNombre()]) && !empty($_POST[$radio->getNombre()]) && !empty($_POST[$textA->getNombre()]) ){
+        $hobby=$_POST[$check->getNombre()];
+        $hobbys="";
+        for($i=0; $i<count($hobby); $i++){
+            $hobbys.=$hobby[$i].",";
+        }
         file_put_contents(
-            "DatoPersonal.csv",
-            $_POST,
+            "datoPesona.csv",
+            $_POST[$labelNombre].";".$_POST[$labelApellido].";".$_POST[$labelNumber].";".$_POST[$radio->getNombre()].";".$_POST[$select->getNombre()].";".$hobbys.";".$_POST[$textA->getNombre()],
             FILE_APPEND
            );
+        cleanData($_POST);
     }
 
 };
 
-    
-
-    //ENVIAR DATOS A OTRA VENTANA O CREAR PDF
-    //llamar a funcion cleanData
-// }
-print_r($_POST);
 ?>
 <!DOCTYPE html>
 <html lang="en">

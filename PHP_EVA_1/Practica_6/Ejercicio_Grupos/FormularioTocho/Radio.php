@@ -5,6 +5,8 @@ class Radio extends Validad{
 
     private $sexo =['HOMBRE','MUJER','OTRO'];
     private $nombre="sexo";
+    function getNombre(){return $this->nombre;}
+
 
     function crear($dato){
         if(empty($dato)){
@@ -24,7 +26,7 @@ class Radio extends Validad{
                         }else{
                             echo "$op<input type='radio' name='$this->nombre' value='$op' id='$op'/>&nbsp;";
                         }
-                    },$dato);
+                    },$dato[$this->nombre]);
             }else{
                 array_walk(
                     $this->sexo,

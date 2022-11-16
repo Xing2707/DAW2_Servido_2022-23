@@ -5,6 +5,7 @@ class CheckBox extends Validad{
 
     private $Hobbies =["DEPORTES","LECTURA","VIDEOJUEGOS","CINE"];
     private $nombre="hobbies[]";
+    function getNombre(){return substr($this->nombre,0,strlen($nombre)-2);}
 
 
     function crear($arrayEnviado){
@@ -16,7 +17,7 @@ class CheckBox extends Validad{
                 }
             );
         }else{
-            if($this->comprobar($arrayEnviado,substr($this->nombre,0,7))){
+            if($this->comprobar($arrayEnviado,substr($this->nombre,0,strlen($this->nombre)-2))){
                 array_walk(
                     $this->Hobbies,
                     function($op, $k, $data){

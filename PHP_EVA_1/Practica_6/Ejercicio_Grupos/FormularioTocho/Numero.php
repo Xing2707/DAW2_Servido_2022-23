@@ -11,16 +11,16 @@ class Numero extends Validad{
             echo "$dato <input type='number' size='1' max='$max' min='$min' name='$dato' value='' id='$dato'><br>";
         }else{
             if($this->comprobar($valor,$dato)){
-                echo "$dato <input type='number' size='1' max='$max' min='$min' name='$dato' value='$valor' id='$dato'><br>";
+                echo "$dato <input type='number' size='1' max='$max' min='$min' name='$dato' value='".$valor[$dato]."' id='$dato'><br>";
             }else{
                 echo "$dato <input type='number' size='1' max='$max' min='$min' name='$dato' value='' id='$dato'><br>";
-                echo $this->error();
+                echo "<p>".$this->error()."</p>";
             }
         }
     }
 
     function comprobar($array,$numero){
-        if(array_key_exists($numero) && !empty($array[$numero])){
+        if(array_key_exists($numero,$array) && !empty($array[$numero])){
             return true;
         }else{
             return false;
