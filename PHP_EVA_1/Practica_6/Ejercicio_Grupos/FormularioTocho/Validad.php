@@ -8,7 +8,8 @@ abstract class Validad{
         return $this->valor;
     }
 
-    abstract function comprobar($valor);
+    abstract function comprobar($valor,$valor2);
+    abstract function error();
 }
 
 ?>

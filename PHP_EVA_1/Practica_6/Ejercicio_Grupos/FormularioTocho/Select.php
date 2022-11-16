@@ -1,48 +1,52 @@
 <?php
 require_once('Validad.php');
-require_once('Errores.php');
 
 class Select extends Validad{
 
-    private $array = [" ","MADRID","BARCELONA","VALENCIA","MURCIA","SEVILLA"];
-    private $error;
+    private $Provincia = [" ","MADRID","BARCELONA","VALENCIA","MURCIA","SEVILLA"];
+    private $nombre="Provincia";
 
     function crear($valor){
-        $this->error=new Errores();
             if(empty($valor)){
-                echo"<select name='provincias' id='provincias'>";
+                echo"<select name='$this->nombre' id='$this->nombre'>";
                     array_walk(
-                        $this->array,function($op,$k){
-                            echo "<option value='$op'>$op</option>";
+                        $this->Provincia,function($op,$k){
+                            echo"<option value='$op'>$op</option>";
                     });
-                echo"</select>";
-            }
-            if($this->comprobar($valor)){
-                array_shift($this->array);
-                echo"<select name='provincias' id='provincias'>";
-                    array_walk($this->array,function($op,$k,$seleccionado){
-                        if($seleccionado!=$op){
-                            echo "<option value='$op'>$op</option>";
-                        }else{
-                            echo "<option value='$op' selected>$op</option>";
-                        }
-                    },$valor);
-                echo"</select>";
+                    echo"</select>";
             }else{
-                array_walk($this->array,function($op,$k){
-                    echo "<option value='$op'>$op</option>";
-                });
-
-                echo$this->error->ErrorSelect();
+                if($this->comprobar($valor,$this->nombre)){
+                    array_shift($this->Provincia);
+                    echo"<select name='$this->nombre' id='$this->nombre'>";
+                        array_walk($this->Provincia,function($op,$k,$seleccionado){
+                            if($seleccionado!=$op){
+                                echo "<option value='$op'>$op</option>";
+                            }else{
+                                echo "<option value='$op' selected>$op</option>";
+                            }
+                        },$valor);
+                    echo"</select>";
+                }else{
+                    echo"<select name='$this->nombre' id='$this->nombre'>";
+                    array_walk($this->Provincia,function($op,$k){
+                        print("<option value='$op'>$op</option>");
+                    });
+                    echo"</select>";
+                    echo "<p>".$this->error()."</p>";
+                }
             }
     }
 
-    function comprobar($valor){
-        if($valor != " "){
+    function comprobar($valor,$nombre){
+        if(array_key_exists($nombre,$valor) && $valor[$nombre] != " "){
             return true;
         }else{
             return false;
         }
+    }
+
+    function error(){
+        return "Error deben Seleccionar un opcion";
     }
 }
 ?>

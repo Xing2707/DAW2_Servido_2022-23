@@ -1,24 +1,20 @@
 <?php
 //Funcion Autoload
-// spl_autoload_register(function ($class){
-//     $classPath ="./";
-//     require("$classPath${class}.php");
-// });
-require("./Select.php");
+spl_autoload_register(function ($class){
+    $classPath ="./";
+    require("$classPath${class}.php");
+});
 
 $select = new Select();
-// $check = new Check();
-// $radio = new Radio();
-// $numero = new Numero();
-// $textoN = new Texto();
-// $textoAp = new Texto();
-// $textA = new Texto();
-
-// $arrayCheck = ["DEPORTES","LECTURA","VIDEOJUEGOS","CINE"];
-// $arrayRadio = ['HOMBRE','MUJER','OTRO'];
-// $labelNumber = "Edad";
-// $labelNombre = "Nombre";
-// $labelApellido = "Apellido";
+$check = new CheckBox();
+$radio = new Radio();
+$numero = new Numero();
+$textoN = new Texto();
+$textoAp = new Texto();
+$textA = new TextArea();
+$labelNumber = "Edad";
+$labelNombre = "Nombre";
+$labelApellido = "Apellido";
 
 /*function cleanData($data) {
     $data = trim($data);
@@ -85,41 +81,24 @@ print_r($_POST);
     <h1>DATOS PERSONALES</h1>
     <form action="" method="post">
         <fieldset><legend>DATOS PERSONALES</legend>
-            <!-- <?php 
-                // $textoN->crear($labelNombre,20,4,$textoN->getX());
-                //     echo "<br>";
-                // $textoAp->crear($labelApellido,20,4,$textoAp->getX());
-                //     echo $arrayError["texto"] . "<br><br>";
-            
-                // $numero->crear($labelNumber,99,18,$numero->getX());
-                // echo $arrayError["numero"] . "<br><br>";
-            ?> -->
+            <?php 
+                $textoN->crear($labelNombre,20,4,$_POST);
+                $textoAp->crear($labelApellido,20,4,$_POST);
+                $numero->crear($labelNumber,99,18,$_POST);
+            ?>
             <b>SEXO: </b> <br>
-            
-                <!-- <?php
-                    // $radio->crear($arrayRadio, $radio->getX());
-                    // echo $arrayError["radio"] . "<br><br>";
-                ?> -->
+                <?php $radio->crear($_POST); ?>
 
             <b>SELECCIONE PROVINCIA:</b><br>
-            <select name="provincias" id="provincias">
-                <?php 
-                    $select->crear($_POST['provincias']);                    
-                ?>
-                
-            </select>
-            <?php echo $arrayError["select"];?>
+                <?php $select->crear($_POST); ?>
+
         </fieldset>
         <fieldset><legend>HOBBIES</legend>
-            <!-- <?php
-                // $check->crear($arrayCheck,$check->getX());
-                // echo $arrayError["check"];
-            ?>
-
-            <br><textarea placeholder="Escribe sobre el hobbie/s seleccionados u otro que te guste" rows="5" cols="50" name="textA" value=""><?php //echo $textA->getX()?></textarea>
             <?php
-                //    echo $arrayError["textA"];
-            ?><br><br> -->
+                $check->crear($_POST);
+                $textA->crear($_POST);
+            ?>
+            <br><br>
         </fieldset>
         <input type="submit" value="enviar" name="enviar"/>
     </form>
