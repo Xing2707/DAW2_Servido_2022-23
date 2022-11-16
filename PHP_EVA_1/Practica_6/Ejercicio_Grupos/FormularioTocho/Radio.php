@@ -7,11 +7,11 @@ class Radio extends Validad{
     private $nombre="sexo";
 
     function crear($dato){
-        if(empty($data)){
+        if(empty($dato)){
             array_walk(
-                $this->$this->sexo,
+                $this->sexo,
                 function($op, $k){
-                    echo "$op<input type='radio' name='$this->nombre' value='$op' id='$op'/>&nbsp;";
+                    echo "$op<input type='radio' name='$this->nombre' value='$op'/>&nbsp;";
                 });
         }else{
             if($this->comprobar($dato,$this->nombre)){
@@ -27,11 +27,11 @@ class Radio extends Validad{
                     },$dato);
             }else{
                 array_walk(
-                    $this->$this->sexo,
+                    $this->sexo,
                     function($op, $k){
                         echo "$op<input type='radio' name='$this->nombre' value='$op' id='$op'/>&nbsp;";
                     });
-                $this->error();
+                echo "<p>".$this->error()."</p>";
             }
 
         }
