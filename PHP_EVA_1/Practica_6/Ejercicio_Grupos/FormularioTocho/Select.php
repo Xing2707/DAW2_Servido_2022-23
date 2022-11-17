@@ -34,7 +34,7 @@ class Select extends Validad{
                         print("<option value='$op'>$op</option>");
                     });
                     echo"</select>";
-                    echo "<p>".$this->error()."</p>";
+                    echo $this->error();
                 }
             }
     }
@@ -48,7 +48,7 @@ class Select extends Validad{
     }
 
     function error(){
-        return "Error deben Seleccionar un opcion";
+        return "<p>Error deben Seleccionar un opcion</p>";
     }
 }
 ?>

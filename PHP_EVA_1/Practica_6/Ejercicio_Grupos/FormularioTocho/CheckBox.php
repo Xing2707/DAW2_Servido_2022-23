@@ -5,7 +5,16 @@ class CheckBox extends Validad{
 
     private $Hobbies =["DEPORTES","LECTURA","VIDEOJUEGOS","CINE"];
     private $nombre="hobbies[]";
-    function getNombre(){return substr($this->nombre,0,strlen($nombre)-2);}
+    private $cadenas;
+    
+    function setCadenas($array){
+        foreach($array as $valor){
+            $this->cadenas.=$valor.",";
+        }
+    }
+    function getCadenas(){return $this->cadenas;}
+
+    function getNombre(){return substr($this->nombre,0,strlen($this->nombre)-2);}
 
 
     function crear($arrayEnviado){
@@ -17,7 +26,7 @@ class CheckBox extends Validad{
                 }
             );
         }else{
-            if($this->comprobar($arrayEnviado,substr($this->nombre,0,strlen($this->nombre)-2))){
+            if($this->comprobar($arrayEnviado,$this->getNombre())){
                 array_walk(
                     $this->Hobbies,
                     function($op, $k, $data){
@@ -27,7 +36,7 @@ class CheckBox extends Validad{
                         }else{
                             echo "$op<input type='checkbox' value='$op' name='$this->nombre'/>&nbsp;";
                         }
-                    },$arrayEnviado[substr($this->nombre,0,7)]);
+                    },$arrayEnviado[$this->getNombre()]);
             }else{
                 array_walk(
                     $this->Hobbies,
@@ -35,7 +44,7 @@ class CheckBox extends Validad{
                         echo "$op<input type='checkbox' value='$op' name='$this->nombre' />&nbsp;";
                     }
                 );
-                echo "<p>".$this->error()."</p>";
+                echo $this->error();
             }
         }
     }
@@ -49,7 +58,7 @@ class CheckBox extends Validad{
     }
 
     function error(){
-        return"Error Deben Seleccionar al menos una CheckBox";
+        return"<p>Error Deben Seleccionar al menos una CheckBox</p>";
     }
 }
 ?>

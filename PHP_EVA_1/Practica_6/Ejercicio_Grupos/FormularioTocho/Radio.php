@@ -33,7 +33,7 @@ class Radio extends Validad{
                     function($op, $k){
                         echo "$op<input type='radio' name='$this->nombre' value='$op' id='$op'/>&nbsp;";
                     });
-                echo "<p>".$this->error()."</p>";
+                    echo $this->error();
             }
 
         }
@@ -48,7 +48,7 @@ class Radio extends Validad{
     }
 
     function error(){
-        return "Error deben seleccionar un opcion de radio";
+        return "<p>Error deben seleccionar un opcion de radio</p>";
     }
 }
 ?>

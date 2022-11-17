@@ -8,13 +8,13 @@ class Numero extends Validad{
     function crear($dato,$max,$min,$valor){
         $this->nombre=$dato;
         if(empty($valor)){
-            echo "$dato <input type='number' size='1' max='$max' min='$min' name='$dato' value='' id='$dato'><br>";
+            echo "$dato <input type='number' size='1' max='$max' min='$min' name='$dato' value='' id='$dato'>";
         }else{
             if($this->comprobar($valor,$dato)){
-                echo "$dato <input type='number' size='1' max='$max' min='$min' name='$dato' value='".$valor[$dato]."' id='$dato'><br>";
+                echo "$dato <input type='number' size='1' max='$max' min='$min' name='$dato' value='".$valor[$dato]."' id='$dato'>";
             }else{
-                echo "$dato <input type='number' size='1' max='$max' min='$min' name='$dato' value='' id='$dato'><br>";
-                echo "<p>".$this->error()."</p>";
+                echo "$dato <input type='number' size='1' max='$max' min='$min' name='$dato' value='' id='$dato'>";
+                echo $this->error();
             }
         }
     }
@@ -28,7 +28,7 @@ class Numero extends Validad{
     }
 
     function error(){
-        return "<p>Error deben introducir $this->nombre </p><br>";
+        return "<p>Error deben introducir $this->nombre </p>";
     }
 }
 ?>

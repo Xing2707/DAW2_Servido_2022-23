@@ -14,7 +14,7 @@ class TextArea extends Validad{
                     echo "<textarea placeholder='Escribe sobre el hobbie/s seleccionados u otro que te guste' rows='5' cols='50' name='$this->nombre'>".$valor[$this->nombre]."</textarea>";
                 }else{
                     echo "<textarea placeholder='Escribe sobre el hobbie/s seleccionados u otro que te guste' rows='5' cols='50' name='$this->nombre'></textarea>";
-                    echo "<p>".$this->error()."</p>";
+                    echo $this->error();
                 }
             }
         
@@ -29,7 +29,7 @@ class TextArea extends Validad{
     }
 
     function error(){
-        return "Error deben escribir algo sobre tu hobbies u otros";
+        return "<p>Error deben escribir algo sobre tu hobbies u otros</p>";
     }
 }
 ?>

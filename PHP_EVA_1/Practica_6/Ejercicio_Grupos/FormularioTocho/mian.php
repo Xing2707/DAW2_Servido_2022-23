@@ -24,22 +24,26 @@ function cleanData($data) {
 }
 
 if(isset($_POST['enviar'])){
-    if(!empty($_POST[$labelNombre]) && !empty($_POST[$labelApellido]) && !empty($_POST[$labelNumber]) && !empty($_POST[$select->getNombre()]) && !empty($_POST[$check->getNombre()]) && !empty($_POST[$radio->getNombre()]) && !empty($_POST[$textA->getNombre()]) ){
-        $hobby=$_POST[$check->getNombre()];
-        $hobbys="";
-        for($i=0; $i<count($hobby); $i++){
-            $hobbys.=$hobby[$i].",";
-        }
+    if(
+        $textoN->comprobar($_POST,$labelNombre) &&
+        $textoAp->comprobar($_POST,$labelApellido) &&
+        $textA->comprobar($_POST,$textA->getNombre()) &&
+        $select->comprobar($_POST,$select->getNombre()) &&
+        $radio->comprobar($_POST,$radio->getNombre()) &&
+        $check->comprobar($_POST,$check->getNombre()) &&
+        $numero->comprobar($_POST,$labelNumber)
+    ){
+        $check->setCadenas($_POST[$check->getNombre()]);
         file_put_contents(
             "datoPesona.csv",
-            $_POST[$labelNombre].";".$_POST[$labelApellido].";".$_POST[$labelNumber].";".$_POST[$radio->getNombre()].";".$_POST[$select->getNombre()].";".$hobbys.";".$_POST[$textA->getNombre()],
+            $_POST[$labelNombre].";".$_POST[$labelApellido].";".$_POST[$labelNumber].";".$_POST[$radio->getNombre()].";".$_POST[$select->getNombre()].";".$check->getCadenas().";".$_POST[$textA->getNombre()]."\n",
             FILE_APPEND
            );
         cleanData($_POST);
+        $_POST=array();
     }
 
 };
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,16 +52,23 @@ if(isset($_POST['enviar'])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        p{
+            margin-top: 5px;
+            margin-bottom: -5px;
+            color:red;
+            font-weight: bolder;
+            font-size: 20px;
+        }
+    </style>
 </head>
 <body>
     <h1>DATOS PERSONALES</h1>
     <form action="" method="post">
         <fieldset><legend>DATOS PERSONALES</legend>
-            <?php 
-                $textoN->crear($labelNombre,20,4,$_POST);
-                $textoAp->crear($labelApellido,20,4,$_POST);
-                $numero->crear($labelNumber,99,18,$_POST);
-            ?>
+            <?php $textoN->crear($labelNombre,20,4,$_POST);?><br>
+            <?php $textoAp->crear($labelApellido,20,4,$_POST);?><br>
+            <?php $numero->crear($labelNumber,99,18,$_POST);?><br>
             <b>SEXO: </b> <br>
                 <?php $radio->crear($_POST); ?><br>
 
@@ -67,8 +78,7 @@ if(isset($_POST['enviar'])){
         </fieldset>
         <fieldset><legend>HOBBIES</legend>
             <?php $check->crear($_POST);?><br>
-            <?php $textA->crear($_POST);?>
-            <br><br>
+            <?php $textA->crear($_POST);?><br>
         </fieldset>
         <input type="submit" value="enviar" name="enviar"/>
     </form>

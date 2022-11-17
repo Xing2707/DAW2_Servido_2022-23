@@ -28,7 +28,7 @@ class Texto extends Validad{
     }
 
     function error(){
-        return "<p>Error deben introducir $this->cadena </p><br>";
+        return "<p>Error deben introducir $this->cadena </p>";
     }
 }
 ?>
