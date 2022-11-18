@@ -14,3 +14,11 @@ dar privilegio de acceso a base de datos a usuario * significa puede hacer gualq
 
 select user from mysql.user ORDER BY user asc;
 Ver tabla de usuario.
+
+SHOW DATABASES; //VER MIS BASES DE DATOS
+
+DROP USER 'NOMBRE USUARIO'@'DIRECCION(LOCALHOST/DIRECCION REMOTO)'.
+
+USE NOBRE DE BASE DE DATOS;
+ENTRAR EN MI BASE DE DATOS
+
