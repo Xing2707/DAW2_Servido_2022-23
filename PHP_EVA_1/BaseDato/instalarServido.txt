@@ -1,0 +1,16 @@
+sudo apt install mariadb-server
+
+sudo su entra  modo administrativo
+
+introduce "mariadb" entra base de dato, para entrar a base de datos necesitas esta en modo administrativo.
+
+show databases; ver informacion de base dato
+
+CREATE DATABASE nombre de base de dato ;
+CREATE USER 'nombre Usuario'@'localhost' IDENTIFIED BY 'contraseña';  //localhost:significa que base de dato solo puede accede por localhost.
+GRANT ALL PRIVILEGES ON nombre Usuario.* TO 'nombre Usuario'@'localhost' WITH GRANT OPTION;
+
+dar privilegio de acceso a base de datos a usuario * significa puede hacer gualquier coso.
+
+select user from mysql.user ORDER BY user asc;
+Ver tabla de usuario.

@@ -49,7 +49,6 @@ if(isset($_POST['enviar'])){
         $pdf -> Output();
 
         cleanData($_POST);
-        $_POST=array();
     }
 
 };
