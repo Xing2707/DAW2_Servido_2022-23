@@ -39,6 +39,15 @@ if(isset($_POST['enviar'])){
             $_POST[$labelNombre].";".$_POST[$labelApellido].";".$_POST[$labelNumber].";".$_POST[$radio->getNombre()].";".$_POST[$select->getNombre()].";".$check->getCadenas().";".$_POST[$textA->getNombre()]."\n",
             FILE_APPEND
            );
+
+        //pdf
+        require('fpdf184/fpdf.php');
+        $pdf = new FPDF();
+        $pdf -> AddPage();
+        $pdf -> SetFont('Arial', '', 10);
+        $pdf -> MultiCell(0,5, 'Hola mi nombre es ' . $_POST[$labelNombre] . " " . $_POST[$labelApellido] . ' actualmente vivo en ' . $_POST[$select->getNombre()] . '. Tengo ' .  $_POST[$labelNumber] . ' anios y mis aficiones son ' .  $check->getCadenas() . ' en especial ' . $_POST[$textA->getNombre()]);
+        $pdf -> Output();
+
         cleanData($_POST);
         $_POST=array();
     }

@@ -21,7 +21,11 @@ class Texto extends Validad{
 
     function comprobar($array,$cadena){
         if(array_key_exists($cadena,$array) && !empty($array[$cadena])){
-            return true;
+            if(preg_match("/[a-z][A-Z]*/",$array[$cadena])){
+                return true;
+            }else{
+                return false;
+            }
         }else{
             return false;
         }
