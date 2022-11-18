@@ -1,5 +1,5 @@
 <?php
-require_once('Validad.php');
+require_once('General.php');
 
 class Numero extends Validad{
 

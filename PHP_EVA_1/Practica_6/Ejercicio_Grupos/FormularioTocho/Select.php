@@ -1,7 +1,7 @@
 <?php
 require_once('Validad.php');
 
-class Select extends Validad{
+class Select extends General{
 
     private $Provincia = [" ","MADRID","BARCELONA","VALENCIA","MURCIA","SEVILLA"];
     private $nombre="Provincia";

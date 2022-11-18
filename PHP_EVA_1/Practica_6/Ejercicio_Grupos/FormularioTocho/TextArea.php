@@ -1,7 +1,7 @@
 <?php
 require_once('Validad.php');
 
-class TextArea extends Validad{
+class TextArea extends General{
 
     private $nombre="Descripcion";
     function getNombre(){return $this->nombre;}

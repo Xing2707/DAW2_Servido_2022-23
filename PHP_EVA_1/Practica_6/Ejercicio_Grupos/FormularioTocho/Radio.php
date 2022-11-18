@@ -1,7 +1,7 @@
 <?php
 require_once('Validad.php');
 
-class Radio extends Validad{
+class Radio extends General{
 
     private $sexo =['HOMBRE','MUJER','OTRO'];
     private $nombre="sexo";

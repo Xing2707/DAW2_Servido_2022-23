@@ -1,7 +1,7 @@
 <?php
 require_once('Validad.php');
 
-class Texto extends Validad{
+class Texto extends General{
     private $cadena;
 
     function crear($dato,$max,$min,$valor){
