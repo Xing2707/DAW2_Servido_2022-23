@@ -1,6 +1,6 @@
 <?php
 abstract class General{
-    abstract function comprobar($valor,$valor2);
+    abstract function comprobar($valor);
     abstract function error();
 }
 

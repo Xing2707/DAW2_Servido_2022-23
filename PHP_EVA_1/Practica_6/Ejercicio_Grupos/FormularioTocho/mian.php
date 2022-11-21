@@ -5,16 +5,36 @@ spl_autoload_register(function ($class){
     require("$classPath${class}.php");
 });
 
-$select = new Select();
-$check = new CheckBox();
-$radio = new Radio();
-$numero = new Numero();
-$textoN = new Texto();
-$textoAp = new Texto();
-$textA = new TextArea();
-$labelNumber = "Edad";
-$labelNombre = "Nombre";
-$labelApellido = "Apellido";
+$select = new Select([" ","MADRID","BARCELONA","VALENCIA","MURCIA","SEVILLA"],"Provincia");
+$check = new CheckBox(["DEPORTES","LECTURA","VIDEOJUEGOS","CINE"],"Hobbies");
+$radio = new Radio(['HOMBRE','MUJER','OTRO'],"Sexo");
+$numero = new Numero("Edad",99,18,1);
+$textoN = new Texto("Nombre",20,4);
+$textoAp = new Texto("Apellido",20,4);
+$textA = new TextArea("Descripcion","Describe algo sobre tu hobbies u otros",5,50);
+
+if(isset($_POST['enviar'])){
+    if($textoN->comprobar($_POST) && $textoAp->comprobar($_POST) && $textA->comprobar($_POST) && $select->comprobar($_POST) && $radio->comprobar($_POST) && $check->comprobar($_POST) && $numero->comprobar($_POST))
+    {
+        $check->setCadenas($_POST[$check->getNombre()]);
+        file_put_contents(
+            "datoPesona.csv",
+            $_POST[$textoN->getNombre()].";".$_POST[$textoAp->getNombre()].";".$_POST[$numero->getNombre()].";".$_POST[$radio->getNombre()].";".$_POST[$select->getNombre()].";".$check->getCadenas().";".$_POST[$textA->getNombre()]."\n",
+            FILE_APPEND
+           );
+
+        //pdf
+        require('./fpdf184/fpdf.php');
+        $pdf = new FPDF();
+        $pdf -> AddPage();
+        $pdf -> SetFont('Arial', '', 10);
+        $pdf -> MultiCell(0,5, 'Hola mi nombre es ' . $_POST[$textoN->getNombre()] . " " . $_POST[$textoAp->getNombre()] .' mi sexo es '.$_POST[$radio->getNombre()].' actualmente vivo en ' . $_POST[$select->getNombre()] . '. Tengo ' .  $_POST[$numero->getNombre()] . ' anios y mis aficiones son ' .  $check->getCadenas() . ' en especial ' . $_POST[$textA->getNombre()]);
+        $pdf -> Output();
+
+        cleanData($_POST);
+    }
+
+};
 
 function cleanData($data) {
     $data = trim($data);
@@ -22,36 +42,6 @@ function cleanData($data) {
     $data = htmlspecialchars($data);
     return $data;
 }
-
-if(isset($_POST['enviar'])){
-    if(
-        $textoN->comprobar($_POST,$labelNombre) &&
-        $textoAp->comprobar($_POST,$labelApellido) &&
-        $textA->comprobar($_POST,$textA->getNombre()) &&
-        $select->comprobar($_POST,$select->getNombre()) &&
-        $radio->comprobar($_POST,$radio->getNombre()) &&
-        $check->comprobar($_POST,$check->getNombre()) &&
-        $numero->comprobar($_POST,$labelNumber)
-    ){
-        $check->setCadenas($_POST[$check->getNombre()]);
-        file_put_contents(
-            "datoPesona.csv",
-            $_POST[$labelNombre].";".$_POST[$labelApellido].";".$_POST[$labelNumber].";".$_POST[$radio->getNombre()].";".$_POST[$select->getNombre()].";".$check->getCadenas().";".$_POST[$textA->getNombre()]."\n",
-            FILE_APPEND
-           );
-
-        //pdf
-        require('fpdf184/fpdf.php');
-        $pdf = new FPDF();
-        $pdf -> AddPage();
-        $pdf -> SetFont('Arial', '', 10);
-        $pdf -> MultiCell(0,5, 'Hola mi nombre es ' . $_POST[$labelNombre] . " " . $_POST[$labelApellido] . ' actualmente vivo en ' . $_POST[$select->getNombre()] . '. Tengo ' .  $_POST[$labelNumber] . ' anios y mis aficiones son ' .  $check->getCadenas() . ' en especial ' . $_POST[$textA->getNombre()]);
-        $pdf -> Output();
-
-        cleanData($_POST);
-    }
-
-};
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -74,9 +64,9 @@ if(isset($_POST['enviar'])){
     <h1>DATOS PERSONALES</h1>
     <form action="" method="post">
         <fieldset><legend>DATOS PERSONALES</legend>
-            <?php $textoN->crear($labelNombre,20,4,$_POST);?><br>
-            <?php $textoAp->crear($labelApellido,20,4,$_POST);?><br>
-            <?php $numero->crear($labelNumber,99,18,$_POST);?><br>
+            <?php $textoN->crear($_POST);?><br>
+            <?php $textoAp->crear($_POST);?><br>
+            <?php $numero->crear($_POST);?><br>
             <b>SEXO: </b> <br>
                 <?php $radio->crear($_POST); ?><br>
 

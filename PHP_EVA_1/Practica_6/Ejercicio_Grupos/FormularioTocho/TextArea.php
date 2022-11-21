@@ -1,27 +1,39 @@
 <?php
-require_once('Validad.php');
 
 class TextArea extends General{
 
-    private $nombre="Descripcion";
-    function getNombre(){return $this->nombre;}
+    private $nombre;
+    private $placehol;
+    private $row;
+    private $cols;
+
+    function __construct($nombre,$placehol,$row,$cols){
+        $this->nombre=$nombre;
+        $this->placehol=$placehol;
+        $this->row=$row;
+        $this->cols=$cols;
+    }
+
+    public function setNombre($nombre){ $this->nombre = $nombre; }
+
+    public function getNombre(){ return $this->nombre; }
 
     function crear($valor){
             if(empty($valor)){
-                echo "<textarea placeholder='Escribe sobre el hobbie/s seleccionados u otro que te guste' rows='5' cols='50' name='$this->nombre'></textarea>";
+                echo "<textarea placeholder='$this->placehol' rows='$this->row' cols='$this->cols' name='$this->nombre'></textarea>";
             }else{
-                if($this->comprobar($valor,$this->nombre)){
-                    echo "<textarea placeholder='Escribe sobre el hobbie/s seleccionados u otro que te guste' rows='5' cols='50' name='$this->nombre'>".$valor[$this->nombre]."</textarea>";
+                if($this->comprobar($valor)){
+                    echo "<textarea placeholder='$this->placehol' rows='$this->row' cols='$this->cols' name='$this->nombre'>".$valor[$this->nombre]."</textarea>";
                 }else{
-                    echo "<textarea placeholder='Escribe sobre el hobbie/s seleccionados u otro que te guste' rows='5' cols='50' name='$this->nombre'></textarea>";
+                    echo "<textarea placeholder='$this->placehol' rows='$this->row' cols='$this->cols' name='$this->nombre'></textarea>";
                     echo $this->error();
                 }
             }
         
     }
 
-    function comprobar($valor,$nombre){
-        if(array_key_exists($nombre,$valor) && !empty($valor[$nombre])){
+    function comprobar($valor){
+        if(!empty($valor[$this->nombre])){
             return true;
         }else{
             return false;
@@ -29,7 +41,7 @@ class TextArea extends General{
     }
 
     function error(){
-        return "<p>Error deben escribir algo sobre tu hobbies u otros</p>";
+        return "<p>Error $this->placehol</p>";
     }
 }
 ?>

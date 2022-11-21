@@ -1,27 +1,38 @@
 <?php
-require_once('Validad.php');
 
 class Texto extends General{
-    private $cadena;
+    private $nombre;
+    private $maxLen;
+    private $minLen;
+    
+    function __construct($nombre,$maxLen,$minLen){
+        $this->nombre=$nombre;
+        $this->maxLen=$maxLen;
+        $this->minLen=$minLen;
 
-    function crear($dato,$max,$min,$valor){
-        $this->cadena=$dato;
+    }
+
+    public function setNombre($nombre){ $this->nombre = $nombre; }
+
+    public function getNombre(){ return $this->nombre; }
+
+    function crear($valor){
         if(empty($valor)){
-            echo "$dato <input type='text' maxlength='$max' minlength='$min' name='$dato' value='' id='$dato'><br>";
+            echo "$this->nombre <input type='text' maxLen='$this->maxLen' minlength='$this->minLen' name='$this->nombre'><br>";
         }else{
-            if($this->comprobar($valor,$dato)){
-                echo "$dato <input type='text' maxlength='$max' minlength='$min' name='$dato' value='".$valor[$dato]."' id='$dato'><br>";
+            if($this->comprobar($valor)){
+                echo "$this->nombre <input type='text' maxLen='$this->maxLen' minlength='$this->minLen' name='$this->nombre' value='".$valor[$this->nombre]."'><br>";
             }else{
-                echo "$dato <input type='text' maxlength='$max' minlength='$min' name='$dato' value='' id='$dato'><br>";
+                echo "$this->nombre <input type='text' maxLen='$this->maxLen' minlength='$this->minLen' name='$this->nombre'><br>";
                 echo $this->error();
 
             }
         }
     }
 
-    function comprobar($array,$cadena){
-        if(array_key_exists($cadena,$array) && !empty($array[$cadena])){
-            if(preg_match("/[a-z][A-Z]*/",$array[$cadena])){
+    function comprobar($array){
+        if(!empty($array[$this->nombre])){
+            if(preg_match("/[a-z][A-Z]*/",$array[$this->nombre])){
                 return true;
             }else{
                 return false;
@@ -32,7 +43,7 @@ class Texto extends General{
     }
 
     function error(){
-        return "<p>Error deben introducir $this->cadena </p>";
+        return "<p>Error deben introducir $this->nombre </p>";
     }
 }
 ?>

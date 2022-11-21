@@ -1,35 +1,41 @@
 <?php
-require_once('Validad.php');
 
 class Radio extends General{
 
-    private $sexo =['HOMBRE','MUJER','OTRO'];
-    private $nombre="sexo";
-    function getNombre(){return $this->nombre;}
+    private $array;
+    private $nombre;
 
+    function __construct($array,$nombre){
+        $this->array=$array;
+        $this->nombre=$nombre;
+    }
+
+    public function setNombre($nombre){ $this->nombre = $nombre; }
+
+    public function getNombre(){ return $this->nombre; }
 
     function crear($dato){
         if(empty($dato)){
             array_walk(
-                $this->sexo,
+                $this->array,
                 function($op, $k){
-                    echo "$op<input type='radio' name='$this->nombre' value='$op'/>&nbsp;";
+                    echo "$op<input type='radio' name='$this->nombre' id='$op' value='$op'>&nbsp;";
                 });
         }else{
-            if($this->comprobar($dato,$this->nombre)){
+            if($this->comprobar($dato)){
                 array_walk(
-                    $this->sexo,
+                    $this->array,
                     function($op, $k, $data){
                         
                         if(($op == $data)){
-                            echo "$op<input type='radio' name='$this->nombre' value='$op' id='$op' checked/>&nbsp;";
+                            echo "$op<input type='radio' name='$this->nombre' value='$op' id='$op' checked>&nbsp;";
                         }else{
-                            echo "$op<input type='radio' name='$this->nombre' value='$op' id='$op'/>&nbsp;";
+                            echo "$op<input type='radio' name='$this->nombre' value='$op' id='$op'>&nbsp;";
                         }
                     },$dato[$this->nombre]);
             }else{
                 array_walk(
-                    $this->sexo,
+                    $this->array,
                     function($op, $k){
                         echo "$op<input type='radio' name='$this->nombre' value='$op' id='$op'/>&nbsp;";
                     });
@@ -39,8 +45,8 @@ class Radio extends General{
         }
     }
 
-    function comprobar($array,$nombre){
-        if(array_key_exists($nombre,$array)){
+    function comprobar($array){
+        if(array_key_exists($this->nombre,$array) && !empty($array[$this->nombre])){
             return true;
         }else{
             return false;
@@ -48,7 +54,7 @@ class Radio extends General{
     }
 
     function error(){
-        return "<p>Error deben seleccionar un opcion de radio</p>";
+        return "<p>Error deben seleccionar un opcion de $this->nombre</p>";
     }
 }
 ?>

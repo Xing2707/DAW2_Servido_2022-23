@@ -1,12 +1,17 @@
 <?php
-require_once('Validad.php');
 
-class CheckBox extends Validad{
+class CheckBox extends General{
 
-    private $Hobbies =["DEPORTES","LECTURA","VIDEOJUEGOS","CINE"];
-    private $nombre="hobbies[]";
+    private $array;
+    private $nombre;
     private $cadenas;
     
+    function __construct($array,$nombre){
+        $this->array=$array;
+        $this->nombre=$nombre."[]";
+
+    }
+
     function setCadenas($array){
         foreach($array as $valor){
             $this->cadenas.=$valor.",";
@@ -14,34 +19,35 @@ class CheckBox extends Validad{
     }
     function getCadenas(){return $this->cadenas;}
 
+    function SetNombre($nombre){$this->nombre=$nombre;}
+
     function getNombre(){return substr($this->nombre,0,strlen($this->nombre)-2);}
 
 
     function crear($arrayEnviado){
         if(empty($arrayEnviado)){
             array_walk(
-                $this->Hobbies,
+                $this->array,
                 function($op, $k){
-                    echo "$op<input type='checkbox' value='$op' name='$this->nombre' />&nbsp;";
+                    echo "$op<input type='checkbox' value='$op' name='$this->nombre' >&nbsp;";
                 }
             );
         }else{
-            if($this->comprobar($arrayEnviado,$this->getNombre())){
+            if($this->comprobar($arrayEnviado)){
                 array_walk(
-                    $this->Hobbies,
+                    $this->array,
                     function($op, $k, $data){
-                        
                         if(in_array($op, $data)){
-                            echo "$op<input type='checkbox' value='$op' name='$this->nombre' checked/>&nbsp;";
+                            echo "$op<input type='checkbox' value='$op' name='$this->nombre' checked >&nbsp;";
                         }else{
-                            echo "$op<input type='checkbox' value='$op' name='$this->nombre'/>&nbsp;";
+                            echo "$op<input type='checkbox' value='$op' name='$this->nombre'>&nbsp;";
                         }
-                    },$arrayEnviado[$this->getNombre()]);
+                    },$arrayEnviado["Hobbies"]);
             }else{
                 array_walk(
-                    $this->Hobbies,
+                    $this->array,
                     function($op, $k){
-                        echo "$op<input type='checkbox' value='$op' name='$this->nombre' />&nbsp;";
+                        echo "$op<input type='checkbox' value='$op' name='$this->nombre' >&nbsp;";
                     }
                 );
                 echo $this->error();
@@ -49,8 +55,8 @@ class CheckBox extends Validad{
         }
     }
 
-    function comprobar($array,$nombre){
-        if(array_key_exists($nombre,$array)){
+    function comprobar($array){
+        if(array_key_exists($this->getNombre(),$array) && !empty($array[$this->getNombre()])){
             return true;
         }else{
             return false;
@@ -58,7 +64,7 @@ class CheckBox extends Validad{
     }
 
     function error(){
-        return"<p>Error Deben Seleccionar al menos una CheckBox</p>";
+        return"<p>Error Deben Seleccionar al menos una".$this->getNombre()."</p>";
     }
 }
 ?>

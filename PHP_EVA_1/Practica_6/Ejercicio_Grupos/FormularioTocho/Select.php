@@ -1,26 +1,32 @@
 <?php
-require_once('Validad.php');
 
 class Select extends General{
 
-    private $Provincia = [" ","MADRID","BARCELONA","VALENCIA","MURCIA","SEVILLA"];
-    private $nombre="Provincia";
-    function getNombre(){return $this->nombre;}
+    private $array;
+    private $nombre;
+    
+    function __construct($array,$nombre){
+        $this->array=$array;
+        $this->nombre=$nombre;
+    }
 
+    public function setNombre($nombre){ $this->nombre = $nombre; }
+
+    public function getNombre(){ return $this->nombre; }
 
     function crear($valor){
             if(empty($valor)){
                 echo"<select name='$this->nombre' id='$this->nombre'>";
                     array_walk(
-                        $this->Provincia,function($op,$k){
+                        $this->array,function($op,$k){
                             echo"<option value='$op'>$op</option>";
                     });
                     echo"</select>";
             }else{
-                if($this->comprobar($valor,$this->nombre)){
-                    array_shift($this->Provincia);
+                if($this->comprobar($valor)){
+                    array_shift($this->array);
                     echo"<select name='$this->nombre' id='$this->nombre'>";
-                        array_walk($this->Provincia,function($op,$k,$seleccionado){
+                        array_walk($this->array,function($op,$k,$seleccionado){
                             if($seleccionado!=$op){
                                 echo "<option value='$op'>$op</option>";
                             }else{
@@ -30,7 +36,7 @@ class Select extends General{
                     echo"</select>";
                 }else{
                     echo"<select name='$this->nombre' id='$this->nombre'>";
-                    array_walk($this->Provincia,function($op,$k){
+                    array_walk($this->array,function($op,$k){
                         print("<option value='$op'>$op</option>");
                     });
                     echo"</select>";
@@ -39,8 +45,8 @@ class Select extends General{
             }
     }
 
-    function comprobar($valor,$nombre){
-        if(array_key_exists($nombre,$valor) && $valor[$nombre] != " "){
+    function comprobar($valor){
+        if($valor[$this->nombre] !=" "){
             return true;
         }else{
             return false;
