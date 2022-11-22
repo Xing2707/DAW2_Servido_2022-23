@@ -5,6 +5,15 @@ spl_autoload_register(function ($class){
     require("$classPath${class}.php");
 });
 
+//Funcion cleanData
+function cleanData($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+
+//Generar objeto de cada clase
 $select = new Select([" ","MADRID","BARCELONA","VALENCIA","MURCIA","SEVILLA"],"Provincia");
 $check = new CheckBox(["DEPORTES","LECTURA","VIDEOJUEGOS","CINE"],"Hobbies");
 $radio = new Radio(['HOMBRE','MUJER','OTRO'],"Sexo");
@@ -13,35 +22,36 @@ $textoN = new Texto("Nombre",20,4);
 $textoAp = new Texto("Apellido",20,4);
 $textA = new TextArea("Descripcion","Describe algo sobre tu hobbies u otros",5,50);
 
+//si se ha enviado
 if(isset($_POST['enviar'])){
+    //validar cada clase
     if($textoN->comprobar($_POST) && $textoAp->comprobar($_POST) && $textA->comprobar($_POST) && $select->comprobar($_POST) && $radio->comprobar($_POST) && $check->comprobar($_POST) && $numero->comprobar($_POST))
     {
+        //Hacer un setcadena de checkbox
         $check->setCadenas($_POST[$check->getNombre()]);
+        //Generar fichero datoPersona.csv
         file_put_contents(
             "datoPesona.csv",
             $_POST[$textoN->getNombre()].";".$_POST[$textoAp->getNombre()].";".$_POST[$numero->getNombre()].";".$_POST[$radio->getNombre()].";".$_POST[$select->getNombre()].";".$check->getCadenas().";".$_POST[$textA->getNombre()]."\n",
             FILE_APPEND
            );
 
-        //pdf
+        //requerimos la carpeta que contiene todos los elementos para generar el pdf
         require('./fpdf184/fpdf.php');
         $pdf = new FPDF();
+         //creamos una nueva pagina
         $pdf -> AddPage();
+        //colocamos la fuente el tamaño de la letra
         $pdf -> SetFont('Arial', '', 10);
+        //colocamos el mensaje
         $pdf -> MultiCell(0,5, 'Hola mi nombre es ' . $_POST[$textoN->getNombre()] . " " . $_POST[$textoAp->getNombre()] .' mi sexo es '.$_POST[$radio->getNombre()].' actualmente vivo en ' . $_POST[$select->getNombre()] . '. Tengo ' .  $_POST[$numero->getNombre()] . ' anios y mis aficiones son ' .  $check->getCadenas() . ' en especial ' . $_POST[$textA->getNombre()]);
         $pdf -> Output();
 
+        //Limpiamos post con funcion cleanData
         cleanData($_POST);
     }
 
 };
-
-function cleanData($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
