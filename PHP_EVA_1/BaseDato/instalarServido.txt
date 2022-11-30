@@ -8,7 +8,7 @@ show databases; ver informacion de base dato
 
 CREATE DATABASE nombre de base de dato ;
 CREATE USER 'nombre Usuario'@'localhost' IDENTIFIED BY 'contraseña';  //localhost:significa que base de dato solo puede accede por localhost.
-GRANT ALL PRIVILEGES ON nombre Usuario.* TO 'nombre Usuario'@'localhost' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON nombre Base de dato.* TO 'nombre Usuario'@'localhost' WITH GRANT OPTION;
 
 dar privilegio de acceso a base de datos a usuario * significa puede hacer gualquier coso.
 
@@ -22,3 +22,5 @@ DROP USER 'NOMBRE USUARIO'@'DIRECCION(LOCALHOST/DIRECCION REMOTO)'.
 USE NOBRE DE BASE DE DATOS;
 ENTRAR EN MI BASE DE DATOS
 
+Instalacion de mysql de php para hace traducion de sql con los otros servidores de base de datos.
+sudo apt install php-mysql

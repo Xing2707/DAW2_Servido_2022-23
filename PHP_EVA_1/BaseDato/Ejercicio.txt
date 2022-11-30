@@ -1,0 +1,8 @@
+listado.php
+
+foreach($linea as $sentencia->fetchAll())
+<tr>
+    <td>
+        <a href="detalle.php?id=<?=$linea['id']?>"><?=$linea['nombre']?></a>
+    </td>
+</tr>

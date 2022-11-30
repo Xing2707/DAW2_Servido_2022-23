@@ -1,0 +1,58 @@
+class Clientes
+{
+    public $nombre;
+    public $ciudad;
+    public function __construct($nombre, $ciudad){
+        $this->nombre = $nombre;
+        $this->ciudad = $ciudad;
+    }
+    // ....Código de la clase....
+}
+$cliente = new Clientes("Jennifer", "Málaga");
+$stmt = $dbh->prepare("INSERT INTO Clientes (nombre, ciudad) VALUES (:nombre, :ciudad)");
+if($stmt->execute((array) $cliente)){
+    echo "Se ha creado un nuevo registro!";
+};
+
+//////////////////////////////////////////////////////////////////////////////////////
+class Clientes
+{
+    public $nombre;
+    public $ciudad;
+    public $otros;
+    public function __construct($otros = ''){
+        $this->nombre = strtoupper($this->nombre);
+        $this->ciudad = mb_substr($this->ciudad, 0, 3);
+        $this->otros = $otros;
+    }
+}
+$stmt = $dbh->prepare("SELECT * FROM Clientes");
+$stmt->setFetchMode(PDO::FETCH_CLASS, 'Clientes');
+$stmt->execute();
+while ($objeto = $stmt->fetch()){
+    echo $objeto->nombre . " -> ";
+    echo $objeto->ciudad . "<br>";
+}
+
+////////////////////////////////////////////////////////////////////
+
+// Si lo siguiente devuelve 1, es que se ha eliminado correctamente:
+echo $dbh->exec("DELETE FROM Clientes WHERE nombre='Luis'");
+// No devuelve el número de filas con SELECT, devuelve 0
+echo $dbh->exec("SELECT * FROM Clientes");
+
+///////////////////////////////////////////////////////////////////Transacion de varios insert.
+
+try {
+    $dbh->beginTransaction();
+    $dbh->query("INSERT INTO Clientes (nombre, ciudad) VALUES ('Leila Birdsall', 'Madrid')");
+    $dbh->query("INSERT INTO Clientes (nombre, ciudad) VALUES ('Brice Osterberg', 'Teruel')");
+    $dbh->query("INSERT INTO Clientes (nombre, ciudad) VALUES ('Latrisha Wagar', 'Valencia')");
+    $dbh->query("INSERT INTO Clientes (nombre, ciudad) VALUES ('Hui Riojas', 'Madrid')");
+    $dbh->query("INSERT INTO Clientes (nombre, ciudad) VALUES ('Frank Scarpa', 'Barcelona')");
+    $dbh->commit();
+    echo "Se han introducido los nuevos clientes";
+} catch (Exception $e){
+    echo "Ha habido algún error";
+    $dbh->rollback();
+}

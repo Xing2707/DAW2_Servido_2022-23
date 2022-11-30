@@ -1,0 +1,5 @@
+Nombre base dato: PRACTICAS.
+Nombre Usuario y contraseña: USUARIO(USUARIO).
+//////////////////////////////////////////////
+Nombre base dato: examen.
+Nombre Usuario y contraseña:examen(examen).
