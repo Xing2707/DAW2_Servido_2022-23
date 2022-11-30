@@ -19,16 +19,9 @@
     ];
     $error;
 
-    $select=new Multiple\Select("turno",[" ",X,"O"]);
+    $select=new Multiple\Select("turno",[" ",X,O]);
     $posicionX=new Simple\Numero(X,1,3);
     $posicionY=new Simple\Numero("Y",1,3);
-
-    function cleanData($data) {
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-        return $data;
-    }
 
     function generarTabla($array,$num=numero){
         echo "<table>";
@@ -58,6 +51,7 @@
                     if($array[$valor[dos]][$valor[uno]]==$valor[cero]){
                         $error="<p>Error! Introduce otro posicion valido</p>";
                     }else{
+                        $select->SiguienteTurno();
                         $error=null;
                         if($valor[cero]==X){
                             $array[$valor[dos]][$valor[uno]]=X;
@@ -66,7 +60,6 @@
                         }
                     }
                 }
-                //cleanData();
 
                 
     }

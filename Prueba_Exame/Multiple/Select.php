@@ -10,6 +10,7 @@ class Select extends CampoMultiple{
     ){
         parent::__construct(self::tipoSelect,$nombre,$array);
     }
+    public function SiguienteTurno(){ return true;}
 
     public function pintar($valor){
         if(empty($valor)){
@@ -21,16 +22,29 @@ class Select extends CampoMultiple{
                 echo"</select>";
         }else{
             if($this->validar($valor)){
-                array_shift($this->id);
-                echo"<select name='$this->name' id='$this->name'>";
-                    array_walk($this->id,function($op,$k,$seleccionado){
-                        if($seleccionado!=$op){
-                            echo "<option value='$op'>$op</option>";
-                        }else{
-                            echo "<option value='$op' selected>$op</option>";
-                        }
-                    },$valor[$this->name]);
-                echo"</select>";
+                if($this->SiguienteTurno){
+                    array_shift($this->id);
+                    echo"<select name='$this->name' id='$this->name'>";
+                        array_walk($this->id,function($op,$k,$seleccionado){
+                            if($seleccionado!=$op){
+                                echo "<option value='$op'>$op</option>";
+                            }else{
+                                echo "<option value='$op' selected>$op</option>";
+                            }
+                        },$valor[$this->name]);
+                    echo"</select>";
+                }else{
+                    array_shift($this->id);
+                    echo"<select name='$this->name' id='$this->name'>";
+                        array_walk($this->id,function($op,$k,$seleccionado){
+                            if($seleccionado==$op){
+                                echo "<option value='$op'>$op</option>";
+                            }else{
+                                echo "<option value='$op' selected>$op</option>";
+                            }
+                        },$valor[$this->name]);
+                    echo"</select>";
+                }
             }else{
                 echo"<select name='$this->name' id='$this->name'>";
                 array_walk($this->id,function($op,$k){
@@ -41,7 +55,7 @@ class Select extends CampoMultiple{
             }
         }
     }
-
+    
     public function validar(array $valor){
         if(array_key_exists($this->name,$valor) && $valor[$this->name]!=null){
                 if($valor[$this->name]==" "){
