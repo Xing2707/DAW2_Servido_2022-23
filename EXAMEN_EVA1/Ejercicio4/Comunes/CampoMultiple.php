@@ -4,15 +4,15 @@
         protected array $elementos;
 
         //constructor
-        public function __construct(string $tipo,string $nombre,array $id,string $valor=""){
+        public function __construct(string $tipo,string $nombre,array $elementos,string $valor=""){
             $this->type=$tipo;
             $this->name=$nombre;
-            $this->id=$id;
+            $this->elementos=$elementos;
             $this->value=$valor;
         }
         //Getter y Setter
-        protected function getId(){return $this->id;}
-        protected function setId(array $id){$this->id=$id;}
+        public function getElementos(){return $this->elementos;}
+        public function setElementos(array $elementos){$this->elementos=$elementos;}
 
         //funcion abstractor.
         abstract public function pintar(array $valor);

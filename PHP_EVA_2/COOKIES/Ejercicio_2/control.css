@@ -1,0 +1,30 @@
+#menu{
+    width: 90%;
+    height: 50px;
+    background-color: aqua;
+    margin: auto;
+    border: 1px solid;
+}
+#menu>ul{
+    display: inline;
+    float: left;
+    width: 100%;
+}
+li{
+    display: block;
+    float: left;
+    border: 3px inset black;
+    width: 150px;
+    height: 25px;
+    position: relative;
+    top: -7px;
+    margin: 0% 5%;
+    text-align: center;
+}
+a{
+    text-decoration: none;
+}
+form{
+    text-align: center;
+    margin-top: 20px;
+}

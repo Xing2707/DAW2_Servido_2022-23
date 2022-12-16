@@ -1,0 +1,37 @@
+usuario
+name
+email
+
+
+formulario -----> navega por post -----> pagina php ----------> hcer consulta
+
+usuario olvida contraseña
+
+fromulario de reguperacion -----------> navega por post (recupera contraseña por email) ----------> pagina php -------> hacer consulta
+
+    1. hacer select de usuario
+    2. hacer insert de token
+    3. email
+
+enviar url con token  para validar
+
+Cliente:
+    -HTTP -> cabecera ($_SERVER (No fiable))
+    -URL -> ($_GET (No fiable))
+    -Formulario -> ($_POST or $_GET (No fiable))
+    -XHR (XML,HTTP,REQUEST) -> ($_GET or $_POST (No fiable))
+    -Cabecera ->($_COOKIES (No fiable))
+Servidor:
+    -$_SERVER
+    -$_GET 
+    -$_POST
+    -$_COOKIES
+Fuable:
+    -No fiable
+
+
+Sesiones genera automatico -> TOKEN
+
+estructura de fichero web
+subir fichero formulario
+
