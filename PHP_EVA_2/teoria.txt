@@ -35,3 +35,11 @@ Sesiones genera automatico -> TOKEN
 estructura de fichero web
 subir fichero formulario
 
+
+login.php
+logout.php
+
+
+if(! isset($_SESSION['user'])|| empty($_SESSION['user'])){
+    header('location: login.php');
+}

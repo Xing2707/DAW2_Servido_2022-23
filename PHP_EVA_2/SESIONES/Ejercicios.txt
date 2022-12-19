@@ -1,0 +1,5 @@
+2 Ejercicio de cookies hacer con sesiones.
+
+Adivina el numero entre 0 y 10 con 3 intentos y si es mayor o menor.
+
+captcha formulario imagen.
