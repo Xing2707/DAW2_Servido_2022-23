@@ -63,7 +63,7 @@
         </label>
         <label id="caja3"><input type="submit" value="Enviar" name="Enviar"></label>
     </form>
-    <div>
+    <div id="">
         <p><a href="./anonimo.php">Entra con usuario anonimo</a></p>
     </div>
 </body>
