@@ -1,8 +1,10 @@
 <?php
+    // require("./Comun/private_area.php");
+
     session_name("LOGIN");
     session_start();
     spl_autoload_register(function($class){
-        $classPath=realpath("./");
+        $classPath=realpath("./Formulario");
         $file=str_replace('\\','/',$class);
         require("$classPath/${file}.php");
 
@@ -48,8 +50,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="control.css">
-    <script defer src="control.js"></script>
+    <link rel="stylesheet" href="Formulario/control.css">
+    <script defer src="Formulario/control.js"></script>
 </head>
 <body>
     <form method="post">
@@ -61,5 +63,8 @@
         </label>
         <label id="caja3"><input type="submit" value="Enviar" name="Enviar"></label>
     </form>
+    <div>
+        <p><a href="./anonimo.php">Entra con usuario anonimo</a></p>
+    </div>
 </body>
 </html>
