@@ -55,7 +55,7 @@
         }
 
         public function error(){
-            return "<p>Error Deben Introducir ". $this->getName()."</p>";
+            return "<p class='error'>Error Deben Introducir ". $this->getName()."</p>";
         }
 
     }

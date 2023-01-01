@@ -1,8 +1,8 @@
 <?php
-    // require("./Comun/private_area.php");
-
     session_name("LOGIN");
     session_start();
+    require_once("./Comun/basedata.php");
+    use cleanInput;
     spl_autoload_register(function($class){
         $classPath=realpath("./Formulario");
         $file=str_replace('\\','/',$class);
@@ -16,8 +16,18 @@
         if(isset($_POST['Enviar'])){
             if($userName->validar($_POST) && $passWord->validar($_POST)){
                 if($_POST[$captcha->getName()]==$captchaGen){
+
                     $_SESSION['captcha']=$captchaGen;
-                    header("location: saludo.php");
+                    $nombreuser=clean_input($_POST[$userName->getName()]);
+                    $contraseña=clean_input($_POST[$passWord->getName()]);
+
+                    $consulta=$mysql->prepare("SELECT * FROM usuario WHERE username = :username LIMIT 1");
+                    $consulta->execute([':username' => $nombreuser]);
+                    $user =$consulta->fetch();
+                    if(isset($user) && password_verify($contraseña,$user['pass'])){
+                        $_SESSION['user']=$nombreuser;
+                        header("location: saludo.php");
+                    }
                 }else{
                     $captchaGen=generarcaptcha();
                     $_SESSION['captcha']=$captchaGen;
@@ -61,10 +71,8 @@
             <span id="caja1"><?=$captcha->pintar($_POST)?></span>
             <span id="caja2"><?=pintarcaptcha($captchaGen)?></span> 
         </label>
+        <label id="cajaEnlace"><p><a href="./anonimo.php">Entra con usuario anonimo</a></p></label>
         <label id="caja3"><input type="submit" value="Enviar" name="Enviar"></label>
     </form>
-    <div id="">
-        <p><a href="./anonimo.php">Entra con usuario anonimo</a></p>
-    </div>
 </body>
 </html>

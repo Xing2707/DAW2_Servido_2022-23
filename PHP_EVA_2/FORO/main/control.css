@@ -1,0 +1,16 @@
+html,body{
+    height: 99%;
+    width: 98%;
+}
+#new{
+    float: right;
+    position: sticky;
+    top: 99%;
+}
+#contenido{
+    margin: auto;
+    height: 96%;
+    width: 60%;
+    padding: 1%;
+}
+
