@@ -2,31 +2,39 @@
     session_name("LOGIN");
     session_start();
     require_once("./Comun/basedata.php");
-    use cleanInput;
+    require_once("./Comun/cleanInput.php");
+
     spl_autoload_register(function($class){
         $classPath=realpath("./Formulario");
         $file=str_replace('\\','/',$class);
         require("$classPath/${file}.php");
 
     });
+
+    $loginError=false;
     $userName= new Simple\Texto("Nombre Usuario","Introducer nombre de Usuario",3,20,20,"Username","/^[a-zA-Z_\x80-\xff][a-zA-Z0-9_\x80-\xff]*$/");
-    $passWord= new Simple\Texto("Cotraseña","Introduce contraseña",8,22,20,"password","/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/");
+    $passWord= new Simple\Texto("Cotraseña","Introduce contraseña",4,22,20,"password");
     $captcha= new Simple\Texto("captcha"," ",4,4,4,"capt");
     $captchaGen= isset($_SESSION['captcha'])? $_SESSION['captcha']:generarcaptcha();
+
         if(isset($_POST['Enviar'])){
             if($userName->validar($_POST) && $passWord->validar($_POST)){
                 if($_POST[$captcha->getName()]==$captchaGen){
 
                     $_SESSION['captcha']=$captchaGen;
-                    $nombreuser=clean_input($_POST[$userName->getName()]);
+                    $nombreuser=clean_input($_POST[str_replace(" ","_",$userName->getName())]);
                     $contraseña=clean_input($_POST[$passWord->getName()]);
 
                     $consulta=$mysql->prepare("SELECT * FROM usuario WHERE username = :username LIMIT 1");
                     $consulta->execute([':username' => $nombreuser]);
-                    $user =$consulta->fetch();
+                    $user=$consulta->fetch();
+
                     if(isset($user) && password_verify($contraseña,$user['pass'])){
                         $_SESSION['user']=$nombreuser;
-                        header("location: saludo.php");
+                        header("location: ./main/main.php");
+                        exit;
+                    }else{
+                        $loginError=true;
                     }
                 }else{
                     $captchaGen=generarcaptcha();
@@ -65,14 +73,16 @@
 </head>
 <body>
     <form method="post">
-        <label><?=$userName->pintar($_POST)?></label><br>
-        <label><?=$passWord->pintar($_POST)?></label><br>
+        <?=$userName->pintar($_POST)?><br>
+        <?=$passWord->pintar($_POST)?><br>
         <label id="cajaGrande">
             <span id="caja1"><?=$captcha->pintar($_POST)?></span>
             <span id="caja2"><?=pintarcaptcha($captchaGen)?></span> 
         </label>
         <label id="cajaEnlace"><p><a href="./anonimo.php">Entra con usuario anonimo</a></p></label>
+        <label ><a href="./registre.php">Registrate</a></label><br>
         <label id="caja3"><input type="submit" value="Enviar" name="Enviar"></label>
     </form>
+    <div><p><?php if($loginError){echo "Error Usuario no encotrado o contraseña incorrecto";}?></p></div>
 </body>
 </html>

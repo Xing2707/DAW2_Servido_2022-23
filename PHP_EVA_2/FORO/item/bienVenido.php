@@ -1,7 +1,7 @@
 <?php
     session_name("LOGIN");
     session_start();
-    require_once("./Comun/private_area.php");
+    require_once("../Comun/private_area.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,5 +13,6 @@
 </head>
 <body>
     <h1>BIEN VENIDO A FORO DE ADMIN.</h1>
+    <p><a href="../main/main.php">volver a main</a></p>
 </body>
 </html>

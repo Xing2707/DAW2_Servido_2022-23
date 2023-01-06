@@ -2,12 +2,27 @@
 session_name("LOGIN");
 session_start();
 require_once("../Comun/private_area.php");
-function pintarpagina(array $enlaces,String $usuario){
+require_once("../Comun/basedata.php");
+
+$enlaces=[];
+$row;
+$username;
+
+$consulta_1=$mysql->prepare("SELECT * FROM creaforo");
+$consulta_1->execute();
+while($row = $consulta_1->fetch()){
+    $consulta_2=$mysql->prepare("SELECT username FROM usuario WHERE userid = :userid");
+    $consulta_2->execute([':userid' => $row['userid']]);
+    $username=$consulta_2->fetch();
+    array_push($enlaces,[$row['direccion'],$row['titulo'],$username['username']]);
+}
+
+function pintalista(array $enlaces,String $usuario){
     for($i=0; $i<count($enlaces); $i++){    
             echo "<a href=".$enlaces[$i][0]." class='enlace'>".$enlaces[$i][1]."</a>";
             echo "<p class='usuario'>User:".$enlaces[$i][2]."</p>";
     }
-    if($usuario=="anonimo"){
+    if($usuario!="anonimo"){
         echo
         "<div id='new'>
             <img src='../IMG/precision.png' onclick='newForo()'/>
@@ -15,8 +30,6 @@ function pintarpagina(array $enlaces,String $usuario){
     }
     
 }
-$enlaces=[];
-array_push($enlaces,["../bienVenido.php","Bien Venido","admin"]);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,6 +43,6 @@ array_push($enlaces,["../bienVenido.php","Bien Venido","admin"]);
 </head>
 <body>
 
-    <div id="contenido"><?=pintarpagina($enlaces,$_SESSION['user']);?><div>
+    <div id="contenido"><?=pintalista($enlaces,$_SESSION['user']);?><div>
 </body>
 </html>
