@@ -21,6 +21,16 @@ $captchaGen= isset($_SESSION['captcha'])? $_SESSION['captcha']:generarcaptcha();
         );
 
         $insertado = $MyDataBase->getExecuted();
+        if($insertado){
+            Mailer::sendEmail(
+                $_POST['correo'],
+                "Nuevo usuario",
+                <<<EOL
+                    Bienvenido {$_POST[$userName->getName()]},
+                    Has hecho bien en gistrarte,
+                EOL
+            );
+        }
 
     }
 ?>
