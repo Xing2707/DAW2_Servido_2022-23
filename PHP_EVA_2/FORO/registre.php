@@ -12,11 +12,12 @@
     });
 
     $userName= new Simple\Texto("Nombre Usuario","Introducer nombre de Usuario",3,20,20,"Username","/^[a-zA-Z_\x80-\xff][a-zA-Z0-9_\x80-\xff]*$/");
-    $passWord= new Simple\Texto("Cotraseña","Introduce contraseña",8,22,20,"password");
-    $passWord_2= new Simple\Texto("Repite Contraseña","Repite contraseña",8,22,20,"password2");
+    $passWord= new Simple\PassWord("Cotraseña","Introduce contraseña",8,22,20,"password");
+    $passWord_2= new Simple\PassWord("Repite Contraseña","Repite contraseña",8,22,20,"password2");
     $captcha= new Simple\Texto("captcha"," ",4,4,4,"capt");
     $captchaGen= isset($_SESSION['captcha'])? $_SESSION['captcha']:generarcaptcha();
     $password_vf=true;
+    $repedido=false;
 
     if(isset($_POST['Enviar'])){
         if($userName->validar($_POST) && $passWord->validar($_POST) && $passWord_2->validar($_POST)){
@@ -25,15 +26,29 @@
                 
                 if($_POST[$passWord->getName()]==$_POST[str_replace(" ","_",$passWord_2->getName())]){
                     $nombreuser=clean_input($_POST[str_replace(" ","_",$userName->getName())]);
-                    $contraseña=password_hash(clean_input($_POST[$passWord->getName()]),PASSWORD_DEFAULT);
+                    $cont=0;
+                    $consulta1=$mysql->prepare("SELECT * FROM usuario");
+                    $consulta1->execute();
+                    while($row = $consulta1->fetch()){
+                        $listauser[$cont]=$row['username'];
+                        $cont++;
+                    }
+                    foreach($listauser as $valor){
+                        if($nombreuser==$valor){
+                            $repedido=true;
+                        }
+                    }
+                    if(!$repedido){
+                        $contraseña=password_hash(clean_input($_POST[$passWord->getName()]),PASSWORD_DEFAULT);
 
-                    $consulta=$mysql->prepare("INSERT INTO usuario(username,pass) VALUES(:username,:pass)");
-                    $consulta->bindParam(':username',$nombreuser);
-                    $consulta->bindParam(':pass',$contraseña);
-                    $consulta->execute();
+                        $consulta2=$mysql->prepare("INSERT INTO usuario(username,pass) VALUES(:username,:pass)");
+                        $consulta2->bindParam(':username',$nombreuser);
+                        $consulta2->bindParam(':pass',$contraseña);
+                        $consulta2->execute();
 
-                    header("location:./login.php");
-                    exit;
+                        header("location:./login.php");
+                        exit;
+                    }
                 }else{
                     $password_vf=false;
                 }
@@ -83,6 +98,7 @@
         </label>
         <label id="caja3"><input type="submit" value="Enviar" name="Enviar"></label>
     </form>
-    <div><p><?php if(!$password_vf){echo "Error las contraseñas deben ser igual";}?></p></div>
+    <div id="ErroPass"><p><?php if(!$password_vf){echo "Error las contraseñas deben ser igual";}?></p></div>
+    <div id="ErroUser"><p><?php if($repedido){echo "Error Nombre de usuario repedido";}?></p></div>
 </body>
 </html>

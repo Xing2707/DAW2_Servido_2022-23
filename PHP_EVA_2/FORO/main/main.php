@@ -42,7 +42,11 @@ function pintalista(array $enlaces,String $usuario){
     <title>main</title>
 </head>
 <body>
-
+    <div id="loginout">
+        <form action="../loginout.php" method="get">
+            <label><input type="submit" value="loginout" name="loginout"></label>
+        </form>
+    </div>
     <div id="contenido"><?=pintalista($enlaces,$_SESSION['user']);?><div>
 </body>
 </html>

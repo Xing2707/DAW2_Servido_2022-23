@@ -13,6 +13,11 @@
 </head>
 <body>
     <h1>BIEN VENIDO A FORO DE ADMIN.</h1>
+    <div id="loginout">
+        <form action="../loginout.php" method="get">
+            <label><input type="submit" value="loginout" name="loginout"></label>
+        </form>
+    </div>
     <p><a href="../main/main.php">volver a main</a></p>
 </body>
 </html>

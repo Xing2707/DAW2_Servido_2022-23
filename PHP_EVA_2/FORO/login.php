@@ -13,7 +13,7 @@
 
     $loginError=false;
     $userName= new Simple\Texto("Nombre Usuario","Introducer nombre de Usuario",3,20,20,"Username","/^[a-zA-Z_\x80-\xff][a-zA-Z0-9_\x80-\xff]*$/");
-    $passWord= new Simple\Texto("Cotraseña","Introduce contraseña",4,22,20,"password");
+    $passWord= new Simple\PassWord("Cotraseña","Introduce contraseña",4,22,20,"password");
     $captcha= new Simple\Texto("captcha"," ",4,4,4,"capt");
     $captchaGen= isset($_SESSION['captcha'])? $_SESSION['captcha']:generarcaptcha();
 
@@ -83,6 +83,6 @@
         <label ><a href="./registre.php">Registrate</a></label><br>
         <label id="caja3"><input type="submit" value="Enviar" name="Enviar"></label>
     </form>
-    <div><p><?php if($loginError){echo "Error Usuario no encotrado o contraseña incorrecto";}?></p></div>
+    <div id="ErrorRegist"><p><?php if($loginError){echo "Error Usuario no encotrado o contraseña incorrecto";}?></p></div>
 </body>
 </html>
