@@ -60,7 +60,7 @@ class BaseDato {
     }
 
     function obtenDatos(){
-        return $this->sentencia->fetchAll();
+        return $this->sentencia->fetch();
     }
 
     function getLastId(){

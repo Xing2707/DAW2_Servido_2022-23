@@ -1,8 +1,11 @@
 <?php
 
 require_once("../SRC/init.php");
+require_once("./Mailer.php");
+$EnvairCorreo=new Mailer();
+
 spl_autoload_register(function($class){
-    $classPath=realpath("./Formulario");
+    $classPath=realpath("../Formulario");
     $file=str_replace('\\','/',$class);
     require("$classPath/${file}.php");
 
@@ -10,10 +13,11 @@ spl_autoload_register(function($class){
 $loginError=false;
 $userName= new Simple\Texto("Nombre Usuario","Introducer nombre de Usuario",3,20,20,"Username","/^[a-zA-Z_\x80-\xff][a-zA-Z0-9_\x80-\xff]*$/");
 $passWord= new Simple\PassWord("Cotraseña","Introduce contraseña",4,22,20,"password");
-$captcha= new Simple\Texto("captcha"," ",4,4,4,"capt");
-$captchaGen= isset($_SESSION['captcha'])? $_SESSION['captcha']:generarcaptcha();
+// $captcha= new Simple\Texto("captcha"," ",4,4,4,"capt");
+// $captchaGen= isset($_SESSION['captcha'])? $_SESSION['captcha']:generarcaptcha();
 
     if(isset($_POST['Registrar'])){
+
         $MyDataBase -> ejecuta("INSERT INTO PerfilUsuario( username,passwd,correo) VALUES(?,?,?)",
             $_POST[$userName->getName()],
             password_hash( $_POST[$passWord->getName()],PASSWORD_DEFAULT),
@@ -22,16 +26,8 @@ $captchaGen= isset($_SESSION['captcha'])? $_SESSION['captcha']:generarcaptcha();
 
         $insertado = $MyDataBase->getExecuted();
         if($insertado){
-            Mailer::sendEmail(
-                $_POST['correo'],
-                "Nuevo usuario",
-                <<<EOL
-                    Bienvenido {$_POST[$userName->getName()]},
-                    Has hecho bien en gistrarte,
-                EOL
-            );
+            $EnvairCorreo->enviar($_POST);
         }
-
     }
 ?>
 
@@ -44,16 +40,13 @@ $captchaGen= isset($_SESSION['captcha'])? $_SESSION['captcha']:generarcaptcha();
     <title>Document</title>
 </head>
 <body>
-    <?php if($insertado) { ?>
         <form action="registre.php" method="post">
-            <?php $userName->pintar($_POST)?>
-            <?php $passWord->pintar($_POST)?>
+            <?=$userName->pintar($_POST)?><br>
+            <?=$passWord->pintar($_POST)?><br>
             <label for="correo">Correo: <input type="email" name="correo" id="correo">
-            <?php $captcha->pintar()?>
-        </label>
-            <input type="submit" name="Registrar" value="Registrar">
+             <!--<?//=$captcha->pintar()?> -->
+            </label><br>
+            <label><input type="submit" name="Registrar" value="Registrar"></label>
         </form>
-    <?php }else {?>
-    <?php } ?>
 </body>
 </html>
