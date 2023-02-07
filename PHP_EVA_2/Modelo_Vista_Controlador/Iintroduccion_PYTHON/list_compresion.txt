@@ -1,0 +1,27 @@
+list = (range(0,9));
+
+newList = [x for x in list if x % 2 == 0]
+
+se genera new list con numero pares de list
+
+[x*x for x in list]
+
+array list se multiplica a cuadrado
+
+fruits = ["apple", "banana", "cherry", "kiwi", "mango"]
+
+newfruits = [x for x in fruits if "a" in x]
+
+se genera nueva lista de fluta contine caracte a
+
+
+import random
+
+[random.randrange(0,10) for _ in range(0,5)]
+
+[x*x if x % 2 ==0 else -1*x for x in num ]
+fitla si x es par x se multiplica al cuadrado si no x = -1*x
+
+[x*x if x % 2 ==0 else -1*x for x in num if x > 5]
+filta num elmento mayor que 5 si x es par x se multiplica al cuadrado si no x = -1*x
+

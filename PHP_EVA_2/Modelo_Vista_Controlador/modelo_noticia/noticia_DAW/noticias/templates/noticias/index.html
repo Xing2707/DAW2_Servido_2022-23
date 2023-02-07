@@ -1,0 +1,16 @@
+{% block title %}
+{{ nombre }}
+{% endblock %}
+
+{% block content %} 
+<div>
+    <ul>
+        {% for noticia in noticias %}
+            <li>
+                <a href="/noticias/{{ noticia.titulo }}">{{ noticia.titulo }}</a><br>
+                {{ noticia.fecha }}
+            </li>
+        {% endfor %}
+    </ul>  
+</div>
+{% endblock %}

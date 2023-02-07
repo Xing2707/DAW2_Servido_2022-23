@@ -1,0 +1,2 @@
+nombre base dato esports
+usuario contraseña: admin(admin)

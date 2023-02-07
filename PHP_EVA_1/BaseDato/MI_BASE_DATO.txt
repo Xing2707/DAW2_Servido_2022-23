@@ -3,3 +3,7 @@ Nombre Usuario y contraseña: USUARIO(USUARIO).
 //////////////////////////////////////////////
 Nombre base dato: examen.
 Nombre Usuario y contraseña:examen(examen).
+Nombre base dato: mysite
+nombre Usuario y contraseña:mysite(1234).
+
+nombre Usuario u contraseña admin(admin).

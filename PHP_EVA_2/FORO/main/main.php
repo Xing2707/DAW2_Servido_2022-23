@@ -8,6 +8,7 @@ $enlaces=[];
 $row;
 $username;
 
+
 $consulta_1=$mysql->prepare("SELECT * FROM creaforo");
 $consulta_1->execute();
 while($row = $consulta_1->fetch()){

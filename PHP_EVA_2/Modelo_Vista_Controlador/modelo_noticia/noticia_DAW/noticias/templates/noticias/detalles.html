@@ -1,0 +1,13 @@
+{% block title %}
+<h1>{{ titulo }}</h1>
+{% endblock %}
+
+{% block content %} 
+<div>
+    {% for foto in imagenes %}
+        <img src="{{ foto.fotos.url }}"/>
+    {% endfor %}
+    <br>
+    <p>{{ text }}</p>
+</div>
+{% endblock %}

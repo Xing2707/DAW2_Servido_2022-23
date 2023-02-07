@@ -1,0 +1,34 @@
+sudo apt-get update
+sudo apt-get install ipython
+
+
+ var_uno=3; #crear variable
+ type(var_uno) #ver tipo de variable
+ print("hola mundo")/print('hola mundo') #imprimir
+ print(f'hola mundo {var_uno}') #concatena hola mundo con variable var_uno
+ lista =["jorge","pepe","lo mismo"] #crear una array
+ ","".join(lista)" imprimir array lista
+ cosa_que_une.join(lista[1:]) #imprimir lista empezandoser por el posicion 1
+lista[0] #imprimir lista posicion 0
+
+numero[1,2,3,4,5,6,7,8];
+len(numero) longitud de la array
+numero[9:1:-1] # orderna array numero de 9 a 1
+#muestra : nuemro[9,8,7,6,5,4,3,2,1]
+a,b = 33,42 #crear dos variable con diferente valores
+# a=33, b=42.
+lista = ["fruta",3,[1,2,3],9,7] #crea array con array bidimesional
+#para ver array bidimesional lista[2]
+tubla[1]='asd' #no puedes modificar el array ni columna que hay, solo puede consulta
+#tubla[1]="hola" #error python
+cadenas = "hola"
+cadenas[1] #imprime o por que o esta en posicion 1
+miinfo ={
+    'nombre':"jorge",
+    'apellido':"Dueñas"
+}
+#crear diccionario de python dar igual las comillas que sea simple o doble.
+miinfo['nombre'] #muestra jorge.
+miinfo["abc"]=[a,b,c] #añade a diccionario miinfo array [a,b,c]
+miinfo.keys() #muestra clave de diccionario miinfo
+miinfo.value() #muestra valores de diccionario miinfo

@@ -1,0 +1,103 @@
+sudo apt-get install python3-pip
+pip install django
+sudo apt-get install python-is-python3
+python -m django --version #ver version de django
+tail ~/.bashrc
+
+cd mysite
+
+cat 
+
+django-admin startproject mysite
+tree
+
+python manage.py runserver #inicializar servidor
+
+http://127.0.0.1:8000 #enlace para entra a servidor
+
+python manage.py startapp polls #crear primer app polls de django
+tree
+
+coneccion base dato con python
+https://docs.djangoproject.com/en/4.1/intro/tutorial02/
+https://docs.djangoproject.com/en/4.1/ref/settings/#std-setting-DATABASES
+para instalar libreria de python
+
+instalar libreria de mysqlclient de django para puede tener mysqlclient.
+apt-get install default-libmysqlclient-dev build-essential
+pip install mysqlclient
+
+comando para emigrar base de dato a django tiene que tener mysqlclient instalado
+python manage.py migrate
+
+
+en base de dato mariadb introduce este comando
+desc django_session;
+para ver session de django emigrado
+
+confgura setting
+despues 
+    python manage.py makemigrations polls
+    para hacer planificacion
+
+    python manage.py migrate
+    sirve emicra planificacion a base de datos
+
+    python manage.py shell
+    entrar terminal shell de python
+    en el terminal introduce:
+    from polls.models import Choice, Question
+    para importar models de polls
+
+    Question.objects.all()
+    para ver todo los consulta que tegon en base de datos
+
+    q = Question(question_text="What's new?", pub_date=timezone.now())
+    para crear nuevo question
+
+    q.save()
+    para salvar q a base de dato si no lo salva no se visualizar en base de datos
+
+    for q in Question.objects.all()
+        print(q.question_text)
+    
+    para imprimir consulta en la pantalla
+
+    crear sitio de administracion
+
+     python manage.py createsuperuser
+     se crear super usuario
+
+     introduce nombre, correo y contraseña
+
+     mi primer super usuario:
+        nombre: admin
+        correo: admin@123.com
+        contraseña admin
+
+    entrar a http://127.0.0.1:8000/admin
+        introducer nombre de super usuario  y contraseña, ya puede modificar o crear nuevos consultas
+
+    insatalacion de extension django 
+        sudo pip install django-extensions
+
+    entrar setting de mysite 
+        INSTALLED_APPS 
+            añade django-extensions
+
+
+    en models cambia 
+        equipo = models.ManyToManyField(Equipo) a equipo = models.ManyToManyField(Equipo,related_name='juegos')
+        
+        y en shell plus
+            e=Equipo.objects.get(nombre="youquese")
+            e.juegos.all()
+            se obtiene informacion que equipo y juego que juegos por manytimany
+            
+            si no añade ralated_name='nombre de variable'
+
+            deben pedir por funcion juegos_get.all()
+            EJ: e.juegos_get.all()
+
+
+    

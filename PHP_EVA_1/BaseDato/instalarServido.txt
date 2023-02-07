@@ -24,3 +24,8 @@ ENTRAR EN MI BASE DE DATOS
 
 Instalacion de mysql de php para hace traducion de sql con los otros servidores de base de datos.
 sudo apt install php-mysql
+
+
+para entrar a base de dato de mariadb por comando se escribe:
+mariadb -h 127.0.0.1 -u nombre de tabla -p nombre de usuario
+al pulsar enter te pide contraseña de base de dato.
