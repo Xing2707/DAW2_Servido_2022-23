@@ -100,4 +100,13 @@ despues
             EJ: e.juegos_get.all()
 
 
+para redireccionar pagina de error deben tener:
+1. fichero de 404.html o cualquier cosa en templates de mysite
+2. en el setting deben desactivar DEBUG (DEBUG = false)
+3. en el setting introduce en ALLOWED_HOSTS = ['localhost']
+4. importar from django.shortcuts import get_object_or_404
+5. usar get_object_or_404 en la consulta 
+	- detalle = get_object_or_404(noticias_DAW,titulo=titulo)
+
+
     
