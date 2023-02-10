@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from django.http import HttpResponse,Http404
+from django.shortcuts import get_object_or_404,render
+from django.http import HttpResponse
 from .models import noticias_DAW,imagen
 
 def lista_noticias(request):
@@ -13,14 +13,11 @@ def lista_noticias(request):
 
 
 def detalle_noticias(request,titulo):
-    try:
-        detalle = noticias_DAW.objects.get(titulo = titulo)
-        contex ={
-            'detalle' : detalle,
-            'titulo' : detalle.titulo.replace("_"," "),
-            'text' : detalle.descripcion,
-            'imagenes' : detalle.imagen.all
-        }
-    except noticias_DAW.DoesNotExist:
-        raise Http404("404 the page dont exist")
+    detalle = get_object_or_404(noticias_DAW,titulo=titulo)
+    contex ={
+        'detalle' : detalle,
+        'titulo' : detalle.titulo.replace("_"," "),
+        'text' : detalle.descripcion,
+        'imagenes' : detalle.imagen.all
+    }
     return render(request,'noticias/detalles.html',contex)
